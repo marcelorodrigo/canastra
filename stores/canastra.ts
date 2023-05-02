@@ -1,4 +1,3 @@
-import { match } from 'assert'
 import { defineStore } from 'pinia'
 
 // scores is the name of the store. It is unique across your application
@@ -8,7 +7,8 @@ export const useCanastraStore = defineStore('scores', {
     state: () => ({
         teams: 2,
         names: ['Nós', 'Eles'],
-        rounds: [[10,20],[-10,-20]]
+        totals: [10, 11],
+        rounds: [[20, 19], [-10, -30]]
     }),
     // optional getters
     getters: {
@@ -25,6 +25,7 @@ export const useCanastraStore = defineStore('scores', {
             // `this` is the store instance
             this.teams = 2
             this.names = ['Nós', 'Eles']
+            this.totals = []
             this.rounds = []
         },
     },
