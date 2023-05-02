@@ -13,6 +13,7 @@ export default defineNuxtConfig({
             siteName: 'Pontos da Canastra',
             siteDescription: 'Um aplicativo para que você possa contar os pontos das suas partidas de Canastra',
             language: 'pt',
+            trailingSlash: true
         }
     },
     vuetify: {
