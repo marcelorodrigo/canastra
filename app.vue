@@ -10,8 +10,10 @@
         <v-spacer />
       </v-app-bar>
       <v-main>
-        <v-container fluid>
-          Oie
+        <v-container fluid class="d-flex flex-column">
+          <Results />
+          <Matches />
+          <AddMatchButton />
         </v-container>
       </v-main>
     </v-app>
