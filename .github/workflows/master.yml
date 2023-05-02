@@ -31,6 +31,8 @@ jobs:
         uses: actions/configure-pages@v3
         with:
           static_site_generator: nuxt
+        env:
+          NUXT_APP_BASE_URL: '/canastra/'
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -44,6 +46,8 @@ jobs:
         run: npm install
       - name: Static HTML export with Nuxt
         run: npm run generate
+        env:
+          NUXT_APP_BASE_URL: '/canastra/'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
