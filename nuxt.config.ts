@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { md1 } from 'vuetify/blueprints'
+
 export default defineNuxtConfig({
     modules: [
         '@invictus.codes/nuxt-vuetify',
@@ -20,11 +22,11 @@ export default defineNuxtConfig({
     vuetify: {
         /* vuetify options */
         vuetifyOptions: {
-            // @TODO: list all vuetify options
+            blueprint: md1
         },
         moduleOptions: {
             /* nuxt-vuetify module options */
-            treeshaking: false,
+            treeshaking: true,
             useIconCDN: true,
             /* vite-plugin-vuetify options */
             styles: true,

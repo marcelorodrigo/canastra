@@ -4,15 +4,16 @@
     <OgImageScreenshot />
     <OgImageStatic />
     <v-app>
-      <v-app-bar app>
-        <img src="/logo.svg" width="48" height="48" alt="Pontos da Canastra" title="Pontos da Canastra" />
-        <v-app-bar-title shrink-on-scroll class="pl-2 text-no-wrap d-none d-sm-flex">Pontos da Canastra</v-app-bar-title>
-        <v-spacer />
+      <v-app-bar app :elevation="2" color="#ffcc66">
+        <img src="/logo.svg" width="60" height="60" alt="Pontos da Canastra" title="Pontos da Canastra" />
+        <v-app-bar-title class="text-no-wrap d-sm-flex">Pontos da Canastra</v-app-bar-title>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
       </v-app-bar>
       <v-main>
         <v-container fluid class="d-flex flex-column">
           <Results />
           <Matches />
+          <AddTeams />
           <AddMatchButton />
         </v-container>
       </v-main>

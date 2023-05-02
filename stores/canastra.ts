@@ -5,10 +5,11 @@ import { defineStore } from 'pinia'
 export const useCanastraStore = defineStore('scores', {
     // a function that returns a fresh state
     state: () => ({
-        teams: 2,
-        names: ['Nós', 'Eles'],
-        totals: [10, 11],
-        rounds: [[20, 19], [-10, -30]]
+        teams: 0,
+        names: [],
+        totals: [],
+        rounds: [],
+        vencedor: 0
     }),
     // optional getters
     getters: {
@@ -23,10 +24,21 @@ export const useCanastraStore = defineStore('scores', {
     actions: {
         reset() {
             // `this` is the store instance
-            this.teams = 2
-            this.names = ['Nós', 'Eles']
+            this.teams = 0
+            this.names = []
             this.totals = []
             this.rounds = []
+            this.vencedor = 0
         },
+        addScore(scores: [number]) {
+            if (scores.length !== this.teams) {
+                console.error('Scores provided do not match teams playing')
+            }
+            this.rounds.push(scores)
+            scores.map((score, i) => this.totals[i] += score)
+        },
+        removeScore(row: number) {
+            this.rounds.splice(row, 1);
+        }
     },
 })
