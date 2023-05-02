@@ -48,6 +48,7 @@ jobs:
         run: npm run generate
         env:
           NUXT_APP_BASE_URL: '/canastra/'
+          NUXT_PUBLIC_SITE_URL: 'https://marcelorodrigo.github.io/canastra'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

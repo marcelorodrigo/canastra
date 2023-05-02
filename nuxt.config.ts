@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         indexable: true,
         public: {
-            siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://marcelorodrigo.github.io/canastra',
+            siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
             siteName: 'Pontos da Canastra',
             siteDescription: 'Um aplicativo para que você possa contar os pontos das suas partidas de Canastra',
             language: 'pt',
