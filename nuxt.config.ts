@@ -8,6 +8,7 @@ export default defineNuxtConfig({
         'nuxt-seo-kit'
     ],
     runtimeConfig: {
+        ssr: true,
         indexable: true,
         public: {
             siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
