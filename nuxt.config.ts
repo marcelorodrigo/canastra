@@ -2,6 +2,14 @@
 import { md1 } from 'vuetify/blueprints'
 
 export default defineNuxtConfig({
+    app: {
+        head: {
+            meta: [{
+                name: "google-site-verification",
+                content: "Fp7R6n_J3xcccADnN8uc3fX3_ewGLF-FwUrYsdW85Ms"
+            }]
+        }
+    },
     modules: [
         '@invictus.codes/nuxt-vuetify',
         '@pinia/nuxt'
