@@ -11,7 +11,6 @@
       </v-app-bar>
       <v-main>
         <v-container fluid class="d-flex flex-column">
-          <Results v-show="!showStartMatch" />
           <Matches v-show="!showStartMatch" />
           <AddTeams v-show="showStartMatch" />
           <AddMatchButton v-show="!showStartMatch" />

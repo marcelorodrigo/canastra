@@ -5,7 +5,6 @@
             <v-btn color="secondary" text="Outra Ação" />
             <v-btn text="Outra Ação" />
         </v-bottom-navigation>
-        <v-btn color="primary">Marcar Pontos</v-btn>
         <v-dialog v-model="dialog" width="auto" min-width="320">
             <v-card>
                 <v-card-title>Marcar pontos</v-card-title>
