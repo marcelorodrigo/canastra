@@ -47,11 +47,6 @@ export default ({
             this.store.names = this.names;
             this.store.winningPoints = this.winningPoints;
             this.store.teams = this.teams;
-            this.store.totals = [0, 0];
-            if (this.store.teams == 3) {
-                this.store.totals[2] = 0;
-            }
-
         }
     }
 })
