@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "Canastra",
+  "description": "Marcardor de pontos para Canastra",
   "private": true,
   "scripts": {
     "build": "nuxt build",

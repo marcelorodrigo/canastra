@@ -16,7 +16,7 @@
         </tbody>
     </v-table>
 </template>
-<script>
+<script lang="ts">
 import { useCanastraStore } from '@/stores/canastra'
 export default defineComponent({
     setup() {
@@ -25,7 +25,7 @@ export default defineComponent({
         }
     },
     methods: {
-        remove(row) {
+        remove(row: number) {
             this.store.removeScore(row);
         }
     }

@@ -19,7 +19,7 @@
         </v-dialog>
     </div>
 </template>
-<script>
+<script lang="ts">
 import { useCanastraStore } from '@/stores/canastra'
 export default ({
     setup() {
@@ -32,7 +32,7 @@ export default ({
             dialog: false,
             score: [],
             rules: {
-                scores: value => !!value || 'Obrigatório',
+                scores: (value: any) => !!value || 'Obrigatório',
             },
         }
     },
