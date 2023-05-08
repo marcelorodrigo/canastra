@@ -1,8 +1,6 @@
-# Nuxt dev/build outputs
 .output
 .nuxt
 node_modules
 dist
-.output
 *.log
 .DS_Store
