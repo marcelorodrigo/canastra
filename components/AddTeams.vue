@@ -1,13 +1,13 @@
 <template>
-    <div v-if="!store.teams">
+    <div>
         <v-card>
             <v-img src="https://source.unsplash.com/random/?playing-cards" height="200px" cover></v-img>
             <v-card-title>Novo Jogo</v-card-title>
             <v-card-text>
                 <div>Quantos times estão jogando?</div>
-                <v-chip-group v-model="teams">
-                    <v-chip>2 times</v-chip>
-                    <v-chip>3 times</v-chip>
+                <v-chip-group v-model.number="teams">
+                    <v-chip value="2">2 times</v-chip>
+                    <v-chip value="3">3 times</v-chip>
                 </v-chip-group>
                 <v-text-field v-for="i in teams" type="text" v-model="names[i - 1]" :label="`Time ${i}`"
                     :rules="[rules.required]" class="py-4"></v-text-field>

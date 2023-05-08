@@ -14,10 +14,10 @@ export const useCanastraStore = defineStore('scores', {
     // a function that returns a fresh state
     state: (): CanastraState => ({
         teams: 0,
-        names: [],
-        totals: [],
+        names: ['',''],
+        totals: [0,0],
         rounds: [],
-        winningPoints: 0,
+        winningPoints: 3000,
       }),
     // optional getters
     getters: {
@@ -33,10 +33,10 @@ export const useCanastraStore = defineStore('scores', {
         reset() {
             // `this` is the store instance
             this.teams = 0
-            this.names = []
-            this.totals = []
+            this.names = ['','']
+            this.totals = [0,0]
             this.rounds = []
-            this.winningPoints = 0
+            this.winningPoints = 3000
         },
         addScore(scores: [number]) {
             if (scores.length !== this.teams) {

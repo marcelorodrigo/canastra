@@ -1,11 +1,17 @@
 <template>
-    <div v-if="store.teams">
+    <div>
+        <v-bottom-navigation>
+            <v-btn color="primary" text="Marcar Pontos" @click="dialog = true" />
+            <v-btn color="secondary" text="Outra Ação" />
+            <v-btn text="Outra Ação" />
+        </v-bottom-navigation>
         <v-btn color="primary">Marcar Pontos</v-btn>
-        <v-dialog v-model="dialog" activator="parent" width="auto">
+        <v-dialog v-model="dialog" width="auto" min-width="320">
             <v-card>
+                <v-card-title>Marcar pontos</v-card-title>
                 <v-card-text>
                     <v-text-field type="number" v-for="(name, index) in store.names" :label="name" :rules="[rules.scores]"
-                        v-model.number="score[index]"></v-text-field>
+                        v-model.number="score[index]" class="py-3"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn color="primary" block @click="add">Adicionar</v-btn>

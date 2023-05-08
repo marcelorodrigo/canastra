@@ -11,12 +11,25 @@
       </v-app-bar>
       <v-main>
         <v-container fluid class="d-flex flex-column">
-          <Results />
-          <Matches />
-          <AddTeams />
-          <AddMatchButton />
+          <Results v-show="!showStartMatch" />
+          <Matches v-show="!showStartMatch" />
+          <AddTeams v-show="showStartMatch" />
+          <AddMatchButton v-show="!showStartMatch" />
         </v-container>
       </v-main>
     </v-app>
   </div>
 </template>
+<script lang="ts">
+import { useCanastraStore } from '@/stores/canastra'
+export default ({
+  setup() {
+    return {
+      store: useCanastraStore(),
+    }
+  },
+  computed: {
+    showStartMatch() { return this.store.teams === 0 }
+  }
+})
+</script>
