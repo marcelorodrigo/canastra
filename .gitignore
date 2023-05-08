@@ -1,8 +1,8 @@
 # Nuxt dev/build outputs
 .output
 .nuxt
-# Node dependencies
 node_modules
-# System files
+dist
+.output
 *.log
 .DS_Store
