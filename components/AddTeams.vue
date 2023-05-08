@@ -1,16 +1,24 @@
 <template>
     <div v-if="!store.teams">
-        <div>Quantos times estão jogando?</div>
-        <v-btn text="2" :active="teams == 2" @click="teams = 2"></v-btn>
-        <v-btn text="3" :active="teams == 3" @click="teams = 3"></v-btn>
-        <div><br /></div>
-        <v-text-field v-for="i in teams" type="text" v-model="names[i - 1]" label="Nome do Time"></v-text-field>
-        <div><br /></div>
-        <v-text-field type="number" v-model.number="vencedor" label="Qual a pontuação para definir o time vencedor?"
-            :rules="[rules.vencedor]"></v-text-field>
-        <br />
-        <br />
-        <v-btn text="Começar" @click="start" />
+        <v-card>
+            <v-img src="https://source.unsplash.com/random/?playing-cards" height="200px" cover></v-img>
+            <v-card-title>Novo Jogo</v-card-title>
+            <v-card-text>
+                <div>Quantos times estão jogando?</div>
+                <v-chip-group v-model="teams">
+                    <v-chip>2 times</v-chip>
+                    <v-chip>3 times</v-chip>
+                </v-chip-group>
+                <v-text-field v-for="i in teams" type="text" v-model="names[i - 1]" :label="`Time ${i}`"
+                    :rules="[rules.required]" class="py-4"></v-text-field>
+                <v-text-field type="number" v-model.number="winningPoints"
+                    label="Qual a pontuação para definir o time vencedor?"
+                    :rules="[rules.required, rules.numeric, rules.minPoints, rules.maxPoints]"></v-text-field>
+            </v-card-text>
+        </v-card>
+        <v-bottom-navigation>
+            <v-btn text="Começar" @click="start" />
+        </v-bottom-navigation>
     </div>
 </template>
 <script lang="ts">
@@ -24,17 +32,20 @@ export default ({
     data() {
         return {
             teams: 2,
-            names: ['Nós','Eles'],
-            vencedor: 3000,
+            names: ['Nós', 'Eles'],
+            winningPoints: 3000,
             rules: {
-                vencedor: (value: number) => (!!value && value > 0) || 'Obrigatório',
+                required: (value: any) => !!value || 'Required.',
+                numeric: (value: any) => /^\d+$/.test(value) || 'Numeric only.',
+                minPoints: (value: any) => value >= 1 || 'Minimum 1 point.',
+                maxPoints: (value: any) => value <= 99999 || 'Maximum 99999 points.',
             },
         }
     },
     methods: {
         start() {
             this.store.names = this.names;
-            this.store.vencedor = this.vencedor;
+            this.store.winningPoints = this.winningPoints;
             this.store.teams = this.teams;
             this.store.totals = [0, 0];
             if (this.store.teams == 3) {

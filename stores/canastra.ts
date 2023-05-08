@@ -1,16 +1,24 @@
 import { defineStore } from 'pinia'
 
+interface CanastraState {
+    teams: number;
+    names: string[];
+    totals: number[];
+    rounds: number[][];
+    winningPoints: number;
+  }
+
 // scores is the name of the store. It is unique across your application
 // and will appear in devtools
 export const useCanastraStore = defineStore('scores', {
     // a function that returns a fresh state
-    state: () => ({
+    state: (): CanastraState => ({
         teams: 0,
         names: [],
         totals: [],
         rounds: [],
-        vencedor: 0
-    }),
+        winningPoints: 0,
+      }),
     // optional getters
     getters: {
         // getters receive the state as first parameter
@@ -28,7 +36,7 @@ export const useCanastraStore = defineStore('scores', {
             this.names = []
             this.totals = []
             this.rounds = []
-            this.vencedor = 0
+            this.winningPoints = 0
         },
         addScore(scores: [number]) {
             if (scores.length !== this.teams) {
