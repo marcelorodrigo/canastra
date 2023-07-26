@@ -21,14 +21,16 @@
 </template>
 <script lang="ts">
 import { useCanastraStore } from '@/stores/canastra'
-export default ({
+export default {
   setup() {
     return {
       store: useCanastraStore(),
     }
   },
   computed: {
-    showStartMatch() { return this.store.teams === 0 }
+    showStartMatch(): boolean {
+      return this.store.teams === 0
+    }
   }
-})
+}
 </script>

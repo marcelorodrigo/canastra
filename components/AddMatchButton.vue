@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
 import { useCanastraStore } from '@/stores/canastra'
-export default ({
+export default {
     setup() {
         return {
             store: useCanastraStore(),
@@ -46,5 +46,5 @@ export default ({
             this.dialog = false
         }
     }
-})
+}
 </script>
