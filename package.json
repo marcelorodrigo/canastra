@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@invictus.codes/nuxt-vuetify": "^0.2.20",
+    "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@types/node": "^20",
     "@vite-pwa/nuxt": "^0.0.9",
     "nuxt": "^3.6.5",
