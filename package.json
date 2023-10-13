@@ -20,7 +20,7 @@
     "vue": "latest"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.4.10",
+    "@pinia/nuxt": "^0.5.0",
     "pinia": "^2.0.35"
   }
 }
