@@ -35,7 +35,7 @@ jobs:
           NUXT_APP_BASE_URL: '/canastra/'
           NUXT_PUBLIC_SITE_URL: 'https://marcelorodrigo.github.io/canastra'
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
   # Deployment job
