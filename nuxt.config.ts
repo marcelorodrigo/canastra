@@ -19,21 +19,22 @@ export default defineNuxtConfig({
             ]
         }
     },
+    site: {
+        url: 'https://marcelorodrigo.github.io/canastra',
+        name: 'Marcador de pontos da Canastra',
+        description: 'Um aplicativo para que você possa marcar os pontos das suas partidas de Canastra',
+        defaultLocale: 'pt',
+    },
     modules: [
         '@invictus.codes/nuxt-vuetify',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
-        '@vite-pwa/nuxt'
+        '@vite-pwa/nuxt',
+        "@nuxtjs/seo"
     ],
     runtimeConfig: {
         ssr: true,
         indexable: true,
-        public: {
-            siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-            siteName: 'Pontos da Canastra',
-            siteDescription: 'Um aplicativo para que você possa contar os pontos das suas partidas de Canastra',
-            language: 'pt'
-        }
     },
     vuetify: {
         /* vuetify options */
