@@ -70,7 +70,7 @@ export default {
     },
     newGame() {
       this.store.reset()
-      apagarDialog = false
+      this.apagarDialog = false
     }
   }
 }
