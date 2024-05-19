@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@invictus.codes/nuxt-vuetify": "^0.3.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/node": "^20",
     "@vite-pwa/nuxt": "^0.7.0",
     "nuxt": "^3.11.2",

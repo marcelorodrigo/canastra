@@ -2,8 +2,7 @@
     <div>
         <v-bottom-navigation>
             <v-btn color="primary" text="Marcar Pontos" @click="dialog = true" />
-            <v-btn color="secondary" text="Outra Ação" />
-            <v-btn text="Outra Ação" />
+            <v-btn color="danger" text="Novo Jogo" @click="newGame" />
         </v-bottom-navigation>
         <v-dialog v-model="dialog" width="auto" min-width="320">
             <v-card>
@@ -44,6 +43,9 @@ export default {
         },
         closeDialog() {
             this.dialog = false
+        },
+        newGamew() {
+            this.store.reset();
         }
     }
 }

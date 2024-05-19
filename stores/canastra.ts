@@ -14,6 +14,7 @@ export const useCanastraStore = defineStore('scores', {
         rounds: [],
         winningPoints: 3000,
     }),
+    persist: true,
     getters: {
         totals: (state) => {
             const totals: number[] = [];
