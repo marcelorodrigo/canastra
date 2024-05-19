@@ -2,7 +2,6 @@
   <div>
     <NuxtPwaManifest />
     <NuxtLoadingIndicator />
-    <SeoKit />
     <v-app>
       <v-app-bar app :elevation="2" color="#ffcc66">
         <img src="/logo.svg" width="60" height="60" alt="Pontos da Canastra" title="Pontos da Canastra" />
