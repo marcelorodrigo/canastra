@@ -25,9 +25,6 @@ export default defineNuxtConfig({
         '@pinia-plugin-persistedstate/nuxt',
         '@vite-pwa/nuxt'
     ],
-    extends: [
-        'nuxt-seo-kit'
-    ],
     runtimeConfig: {
         ssr: true,
         indexable: true,
