@@ -2,7 +2,8 @@
   <div>
     <v-bottom-navigation>
       <v-btn color="primary" text="Marcar Pontos" @click="dialog = true"/>
-      <v-btn color="danger" text="Novo Jogo" @click="apagarDialog = true"/>
+      <v-btn color="secondary" text="Revanche" @click="revancheDialog = true"/>
+      <v-btn color="danger" text="Apagar tudo" @click="apagarDialog = true"/>
     </v-bottom-navigation>
     <v-dialog transition="dialog-bottom-transition" width="auto" v-model="apagarDialog">
       <v-card>
@@ -22,6 +23,28 @@
               text="Fechar"
               color="secondary"
               @click="apagarDialog = false"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog transition="dialog-bottom-transition" width="auto" v-model="revancheDialog">
+      <v-card>
+        <v-toolbar title="Revanche?"></v-toolbar>
+        <v-card-text class="pa-12">
+          Ao confirmar, a pontuação será apagada e uma revanche com mesmos times será iniciada.<br />
+          Deseja continuar?
+        </v-card-text>
+
+        <v-card-actions class="justify-end">
+          <v-btn
+              text="Iniciar Revanche"
+              color="primary"
+              @click="revanche"
+          ></v-btn>
+          <v-btn
+              text="Fechar"
+              color="secondary"
+              @click="revancheDialog = false"
           ></v-btn>
         </v-card-actions>
       </v-card>
@@ -53,6 +76,7 @@ export default {
     return {
       dialog: false,
       apagarDialog: false,
+      revancheDialog: false,
       score: [],
       rules: {
         scores: (value: any) => !!value || 'Obrigatório',
@@ -71,6 +95,10 @@ export default {
     newGame() {
       this.store.reset()
       this.apagarDialog = false
+    },
+    revanche() {
+      this.store.revanche()
+      this.revancheDialog = false
     }
   }
 }

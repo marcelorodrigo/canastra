@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
 interface CanastraState {
     teams: number;
@@ -30,6 +30,9 @@ export const useCanastraStore = defineStore('scores', {
             this.names = Array(2).fill('')
             this.rounds = []
             this.winningPoints = 3000
+        },
+        revanche() {
+            this.rounds = []
         },
         addScore(scores: number[]) {
             if (!scores || scores.length !== this.teams) {
