@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card>
-            <v-img src="/cards.jpg" height="200px" cover></v-img>
+            <v-img src="cards.jpg" height="200px" cover></v-img>
             <v-card-title>Novo Jogo</v-card-title>
             <v-card-text>
                 <div>Quantos times estão jogando?</div>
