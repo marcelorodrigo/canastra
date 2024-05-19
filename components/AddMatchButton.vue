@@ -44,7 +44,7 @@ export default {
         closeDialog() {
             this.dialog = false
         },
-        newGamew() {
+        newGame() {
             this.store.reset();
         }
     }
