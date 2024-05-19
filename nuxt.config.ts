@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { md1 } from 'vuetify/blueprints'
 
 export default defineNuxtConfig({
     app: {
@@ -9,13 +8,13 @@ export default defineNuxtConfig({
                 content: "Fp7R6n_J3xcccADnN8uc3fX3_ewGLF-FwUrYsdW85Ms"
             }],
             link: [
-                { rel: "preconnect", href: "https://cdn.jsdelivr.net" },
-                { rel: "icon", href: "favicon.ico", type: "image/x-icon" },
-                { rel: "icon", href: "android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
-                { rel: "icon", href: "android-chrome-521x512.png", type: "image/png", sizes: "512x512" },
-                { rel: "icon", href: "apple-touch-icon.png", type: "image/png", sizes: "180x180" },
-                { rel: "icon", href: "favicon-16x16.png", type: "image/png", sizes: "16x16" },
-                { rel: "icon", href: "favicon-32x32.png", type: "image/png", sizes: "32x32" },
+                {rel: "preconnect", href: "https://cdn.jsdelivr.net"},
+                {rel: "icon", href: "favicon.ico", type: "image/x-icon"},
+                {rel: "icon", href: "android-chrome-192x192.png", type: "image/png", sizes: "192x192"},
+                {rel: "icon", href: "android-chrome-521x512.png", type: "image/png", sizes: "512x512"},
+                {rel: "icon", href: "apple-touch-icon.png", type: "image/png", sizes: "180x180"},
+                {rel: "icon", href: "favicon-16x16.png", type: "image/png", sizes: "16x16"},
+                {rel: "icon", href: "favicon-32x32.png", type: "image/png", sizes: "32x32"},
             ]
         }
     },
@@ -39,12 +38,14 @@ export default defineNuxtConfig({
     vuetify: {
         /* vuetify options */
         vuetifyOptions: {
-            blueprint: md1
+            icons: {
+                defaultSet: 'mdi',
+            }
         },
         moduleOptions: {
             /* nuxt-vuetify module options */
             treeshaking: true,
-            useIconCDN: true,
+            useIconCDN: false,
             /* vite-plugin-vuetify options */
             styles: true,
             autoImport: true,
