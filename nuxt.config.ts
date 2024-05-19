@@ -20,7 +20,7 @@ export default defineNuxtConfig({
         }
     },
     site: {
-        url: 'https://marcelorodrigo.github.io/canastra',
+        url: 'https://marcelorodrigo.github.io',
         name: 'Marcador de pontos da Canastra',
         description: 'Um aplicativo para que você possa marcar os pontos das suas partidas de Canastra',
         defaultLocale: 'pt',
