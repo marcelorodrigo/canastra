@@ -1,5 +1,7 @@
 <template>
   <div>
+    <NuxtPwaManifest />
+    <NuxtLoadingIndicator />
     <SeoKit />
     <v-app>
       <v-app-bar app :elevation="2" color="#ffcc66">
