@@ -69,7 +69,8 @@ export default {
       this.dialog = false
     },
     newGame() {
-      this.store.reset();
+      this.store.reset()
+      apagarDialog = false
     }
   }
 }
