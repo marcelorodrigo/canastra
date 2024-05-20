@@ -8,7 +8,6 @@ export default defineNuxtConfig({
                 content: "Fp7R6n_J3xcccADnN8uc3fX3_ewGLF-FwUrYsdW85Ms"
             }],
             link: [
-                {rel: "preconnect", href: "https://cdn.jsdelivr.net"},
                 {rel: "icon", href: "favicon.ico", type: "image/x-icon"},
                 {rel: "icon", href: "android-chrome-192x192.png", type: "image/png", sizes: "192x192"},
                 {rel: "icon", href: "android-chrome-521x512.png", type: "image/png", sizes: "512x512"},
@@ -60,7 +59,7 @@ export default defineNuxtConfig({
         registerType: 'autoUpdate',
         manifest: {
             name: 'Pontos da Canastra',
-            short_name: 'Canastra',
+            short_name: 'Pontos da Canastra',
             lang: 'pt',
             theme_color: '#ffffff',
             icons: [
