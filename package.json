@@ -16,7 +16,7 @@
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/node": "^22",
     "@vite-pwa/nuxt": "^0.10.0",
-    "nuxt": "^3.13.1"
+    "nuxt": "^3.13.2"
   },
   "overrides": {
     "vue": "latest"
