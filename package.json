@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.4",
-    "pinia": "^2.0.35"
+    "pinia": "^2.2.7"
   }
 }
