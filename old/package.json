@@ -1,0 +1,28 @@
+{
+  "name": "canastra",
+  "description": "Marcardor de pontos para Canastra",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate --preset github_pages",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@invictus.codes/nuxt-vuetify": "^0.3.0",
+    "@mdi/font": "^7.4.47",
+    "@nuxtjs/seo": "^2.0.0-rc.18",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@types/node": "^22",
+    "@vite-pwa/nuxt": "^0.10.0",
+    "nuxt": "^3.15.0"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.5.4",
+    "pinia": "^2.0.35"
+  }
+}
