@@ -34,7 +34,7 @@
             v-model="names[i - 1]"
             :id="`team-${i}`"
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            :class="{ 'border-red-500': !names[i - 1] && submitted }"
+            :class="{ 'border-red-500': !names[i - 1] }"
           />
         </div>
         <div class="mb-4">
@@ -68,7 +68,6 @@ import { useCanastraStore } from "@/stores/canastra.ts";
 const teams = ref<number>(2);
 const names = ref<string[]>(["Nós", "Eles", "Amigues"]);
 const winningPoints = ref<number>(3000);
-const submitted = ref<boolean>(false);
 const scores = useCanastraStore();
 
 const submit = (): void => {
@@ -79,17 +78,9 @@ const submit = (): void => {
     if (teams.value === 2) {
       names.value = names.value.slice(0, 2);
     }
-    // Handle form submission
-    console.log("Form submitted", {
-      teams: teams.value,
-      names: names.value,
-      winningPoints: winningPoints.value,
-    });
     scores.teams = teams.value;
     scores.names = names.value;
     scores.winningPoints = winningPoints.value;
-
-    submitted.value = true;
   }
 };
 </script>
