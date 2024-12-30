@@ -13,7 +13,6 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon-180x180.png', 'maskable-icon-512x512.png'],
-      devOptions: { enabled: true },
       manifest: {
         name: 'Pontos da Canastra',
         short_name: 'Pontos Canastra',
