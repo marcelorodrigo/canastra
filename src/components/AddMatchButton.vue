@@ -1,117 +1,70 @@
 <template>
   <div>
-    <v-bottom-navigation>
-      <v-btn color="primary" text="Marcar Pontos" @click="dialog = true" />
-      <v-btn color="secondary" text="Revanche" @click="revancheDialog = true" />
-      <v-btn color="danger" text="Apagar tudo" @click="apagarDialog = true" />
-    </v-bottom-navigation>
-    <v-dialog
-      transition="dialog-bottom-transition"
-      width="auto"
-      v-model="apagarDialog"
-    >
-      <v-card>
-        <v-toolbar title="Apagar tudo"></v-toolbar>
-        <v-card-text class="pa-12">
-          Ao confirmar a pontuação será totalmente removida para iniciar um novo
-          jogo.<br />
-          Deseja continuar?
-        </v-card-text>
+    <div class="fixed bottom-0 left-0 right-0 flex justify-around bg-gray-800 p-4">
+      <button class="bg-blue-500 text-white py-2 px-4 rounded" @click="dialog = true">Marcar Pontos</button>
+      <button class="bg-green-500 text-white py-2 px-4 rounded" @click="revancheDialog = true">Revanche</button>
+      <button class="bg-red-500 text-white py-2 px-4 rounded" @click="apagarDialog = true">Apagar tudo</button>
+    </div>
 
-        <v-card-actions class="justify-end">
-          <v-btn text="Apagar tudo" color="primary" @click="newGame"></v-btn>
-          <v-btn
-            text="Fechar"
-            color="secondary"
-            @click="apagarDialog = false"
-          ></v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <v-dialog
-      transition="dialog-bottom-transition"
-      width="auto"
-      v-model="revancheDialog"
-    >
-      <v-card>
-        <v-toolbar title="Revanche?"></v-toolbar>
-        <v-card-text class="pa-12">
-          Ao confirmar, a pontuação será apagada e uma revanche com mesmos times
-          será iniciada.<br />
+    <div v-if="apagarDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white rounded-lg p-6 w-auto">
+        <div class="text-lg font-bold mb-4">Apagar tudo</div>
+        <div class="mb-4">
+          Ao confirmar a pontuação será totalmente removida para iniciar um novo jogo.<br />
           Deseja continuar?
-        </v-card-text>
+        </div>
+        <div class="flex justify-end">
+          <button class="bg-blue-500 text-white py-2 px-4 rounded" @click="newGame">Apagar tudo</button>
+        </div>
+      </div>
+    </div>
 
-        <v-card-actions class="justify-end">
-          <v-btn
-            text="Iniciar Revanche"
-            color="primary"
-            @click="revanche"
-          ></v-btn>
-          <v-btn
-            text="Fechar"
-            color="secondary"
-            @click="revancheDialog = false"
-          ></v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <v-dialog v-model="dialog" width="auto" min-width="320">
-      <v-card>
-        <v-card-title>Marcar pontos</v-card-title>
-        <v-card-text>
-          <v-text-field
-            type="number"
-            v-for="(name, index) in store.names"
-            :label="name"
-            :rules="[rules.scores]"
-            v-model.number="score[index]"
-            class="py-3"
-          ></v-text-field>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" block @click="add">Adicionar</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <div v-if="dialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white rounded-lg p-6 w-auto">
+        <div class="text-lg font-bold mb-4">Adicionar Pontos</div>
+        <div class="flex justify-end">
+          <button class="bg-blue-500 text-white py-2 px-4 rounded" @click="add">Adicionar</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-<script lang="ts">
+
+<script setup lang="ts">
+import { ref } from 'vue';
 import { useCanastraStore } from "@/stores/canastra";
 
-export default {
-  setup() {
-    return {
-      store: useCanastraStore(),
-    };
-  },
-  data() {
-    return {
-      dialog: false,
-      apagarDialog: false,
-      revancheDialog: false,
-      score: [],
-      rules: {
-        scores: (value: any) => !!value || "Obrigatório",
-      },
-    };
-  },
-  methods: {
-    add() {
-      this.store.addScore(this.score);
-      this.score = [];
-      this.closeDialog();
-    },
-    closeDialog() {
-      this.dialog = false;
-    },
-    newGame() {
-      this.store.reset();
-      this.apagarDialog = false;
-    },
-    revanche() {
-      this.store.revanche();
-      this.revancheDialog = false;
-    },
-  },
+const store = useCanastraStore();
+
+const dialog = ref(false);
+const apagarDialog = ref(false);
+const revancheDialog = ref(false);
+const score = ref<number[]>([]);
+const rules = {
+  scores: (value: any) => !!value || "Obrigatório",
 };
+
+function add() {
+  store.addScore(score.value);
+  score.value = [];
+  closeDialog();
+}
+
+function closeDialog() {
+  dialog.value = false;
+}
+
+function newGame() {
+  store.reset();
+  apagarDialog.value = false;
+}
+
+function revanche() {
+  store.revanche();
+  revancheDialog.value = false;
+}
 </script>
+
+<style scoped>
+/* Add your styles here */
+</style>
