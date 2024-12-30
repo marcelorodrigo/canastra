@@ -1,42 +1,46 @@
-# Nuxt 3 Minimal Starter
+# canastra
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Marcardor de Pontos para Canastra.
 
-## Setup
+## Project Setup
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
+```sh
+yarn
 ```
 
-## Development Server
+### Compile and Hot-Reload for Development
 
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
+```sh
+yarn dev
 ```
 
-## Production
+### Type-Check, Compile and Minify for Production
 
-Build the application for production:
-
-```bash
-npm run build
+```sh
+yarn build
 ```
 
-Locally preview production build:
+### Run End-to-End Tests with [Playwright](https://playwright.dev)
 
-```bash
-npm run preview
+```sh
+# Install browsers for the first run
+npx playwright install
+
+# When testing on CI, must build the project first
+yarn build
+
+# Runs the end-to-end tests
+yarn test:e2e
+# Runs the tests only on Chromium
+yarn test:e2e --project=chromium
+# Runs the tests of a specific file
+yarn test:e2e tests/example.spec.ts
+# Runs the tests in debug mode
+yarn test:e2e --debug
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+yarn lint
+```
