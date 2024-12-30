@@ -2,7 +2,7 @@ import "./assets/css/tailwind.css";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
 
 const app = createApp(App);
