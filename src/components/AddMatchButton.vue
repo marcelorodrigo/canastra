@@ -22,7 +22,6 @@
         Apagar tudo
       </button>
     </div>
-
     <div
       v-if="apagarDialog"
       class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
@@ -40,6 +39,40 @@
             @click="newGame"
           >
             Apagar tudo
+          </button>
+          <button
+            class="ml-4 bg-gray-500 text-white py-2 px-4 rounded"
+            @click="apagarDialog = false"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="revancheDialog"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white rounded-lg p-6 w-auto">
+        <div class="text-lg font-bold mb-4">Revanche?</div>
+        <div class="mb-4">
+          Ao confirmar, a pontuação será apagada e uma revanche com mesmos times
+          será iniciada.<br />
+          Deseja continuar?
+        </div>
+        <div class="flex justify-end">
+          <button
+            class="bg-blue-500 text-white py-2 px-4 rounded"
+            @click="revanche"
+          >
+            Revanche
+          </button>
+          <button
+            class="ml-4 bg-gray-500 text-white py-2 px-4 rounded"
+            @click="revancheDialog = false"
+          >
+            Fechar
           </button>
         </div>
       </div>
