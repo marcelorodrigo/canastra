@@ -141,7 +141,3 @@ function revanche() {
   revancheDialog.value = false;
 }
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>
