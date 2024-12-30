@@ -14,13 +14,12 @@ export const useCanastraStore = defineStore("scores", {
     rounds: [],
     winningPoints: 3000,
   }),
-  persist: true,
   getters: {
     totals: (state) => {
       const totals: number[] = [];
       for (let i = 0; i < state.teams; i++) {
         totals[i] = state.rounds.reduce(
-          (accumulator, round) => accumulator + round[i],
+          (accumulator, round) => accumulator + (round[i] || 0),
           0,
         );
       }
@@ -40,6 +39,7 @@ export const useCanastraStore = defineStore("scores", {
     addScore(scores: number[]) {
       if (!scores || scores.length !== this.teams) {
         console.error("Scores provided do not match teams playing");
+        return;
       }
       this.rounds.push(scores);
     },
