@@ -19,7 +19,7 @@
   </v-table>
 </template>
 <script lang="ts">
-import { useCanastraStore } from "@/stores/canastra";
+import { useCanastraStore } from "@/canastrastores/canastra";
 export default defineComponent({
   setup() {
     return {
