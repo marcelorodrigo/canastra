@@ -44,3 +44,7 @@ yarn test:e2e --debug
 ```sh
 yarn lint
 ```
+
+
+## Credits
+- Logo by [SVG Repo](https://www.svgrepo.com/svg/198923/poker)
