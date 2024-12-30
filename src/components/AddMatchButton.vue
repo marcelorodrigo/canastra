@@ -117,9 +117,6 @@ const dialog = ref(false);
 const apagarDialog = ref(false);
 const revancheDialog = ref(false);
 const score = ref<number[]>([]);
-const rules = {
-  scores: (value: any) => !!value || "Obrigatório",
-};
 
 function add() {
   store.addScore(score.value);

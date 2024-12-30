@@ -1,7 +1,7 @@
 <template>
-  <Header></Header>
+  <AppHeader></AppHeader>
   <AddTeams v-show="!hasGameStarted"></AddTeams>
-  <Matches v-show="hasGameStarted"></Matches>
+  <ListMatches v-show="hasGameStarted"></ListMatches>
   <AddMatchButton v-show="hasGameStarted"></AddMatchButton>
   <main></main>
 </template>
@@ -11,8 +11,8 @@ import { computed } from "vue";
 import { useCanastraStore } from "./stores/canastra.ts";
 import AddTeams from "./components/AddTeams.vue";
 import AddMatchButton from "./components/AddMatchButton.vue";
-import Header from "./components/Header.vue";
-import Matches from "./components/Matches.vue";
+import AppHeader from "./components/AppHeader.vue";
+import ListMatches from "./components/ListMatches.vue";
 
 const scores = useCanastraStore();
 
