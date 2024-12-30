@@ -31,6 +31,8 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install
+      - name: Install System Dependencies
+        run: yarn playwright install-deps
       - name: Install Browsers
         run: yarn playwright install 
       - name: Run tests
