@@ -8,6 +8,7 @@ interface CanastraState {
 }
 
 export const useCanastraStore = defineStore("scores", {
+  persist: true,
   state: (): CanastraState => ({
     teams: 0,
     names: Array(2).fill(""),
