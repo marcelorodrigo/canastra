@@ -34,7 +34,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.18.0",
     "eslint-plugin-oxlint": "^0.15.7",
-    "eslint-plugin-playwright": "^2.1.0",
+    "eslint-plugin-playwright": "^2.2.0",
     "eslint-plugin-vue": "^9.30.0",
     "npm-run-all2": "^7.0.1",
     "oxlint": "^0.15.7",
