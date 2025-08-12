@@ -61,8 +61,8 @@ importers:
         specifier: ^7.0.1
         version: 7.0.2
       oxlint:
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.11.1
+        version: 1.11.1
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
@@ -634,8 +634,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0 || ^8.0.0-0 <8.0.0
 
-  '@babel/runtime@7.27.6':
-    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
+  '@babel/runtime@7.28.2':
+    resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/standalone@7.26.7':
@@ -658,8 +658,8 @@ packages:
     resolution: {integrity: sha512-jYnje+JyZG5YThjHiF28oT4SIZLnYOcSBb6+SDaFIyzDVSkXQmQQYclJ2R+YxcdmK0AX6x1E5OQNtuh3jHDrUg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.28.1':
-    resolution: {integrity: sha512-x0LvFTekgSX+83TI28Y9wYPUfzrnl2aT5+5QLnO6v7mSJYtEEevuDRN0F0uSHRk1G1IWZC43o00Y0xDDrpBGPQ==}
+  '@babel/types@7.28.2':
+    resolution: {integrity: sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ==}
     engines: {node: '>=6.9.0'}
 
   '@canvas/image-data@1.0.0':
@@ -925,43 +925,67 @@ packages:
     resolution: {integrity: sha512-dr7I7eZOoRLl4uxdxeL2dQsH0OrbEiVPIyBHnBpA4co24CBnoJoF+JINuP9l3PAM3IhUzc5JIVq3/YY3lEc3Hw==}
     engines: {node: '>=18.12.0'}
 
-  '@oxlint/darwin-arm64@1.6.0':
-    resolution: {integrity: sha512-m3wyqBh1TOHjpr/dXeIZY7OoX+MQazb+bMHQdDtwUvefrafUx+5YHRvulYh1sZSQ449nQ3nk3qj5qj535vZRjg==}
+  '@oxlint-tsgolint/darwin-arm64@0.0.1':
+    resolution: {integrity: sha512-DhPovgw2MVvQhU4uyrrgBUqRkmh6V66zItbpWu352B0f9LW0tFm2cXcTDR1QkDo1m9B6YV7qR9IPI2/q7gLDeA==}
+    os: [darwin]
+
+  '@oxlint-tsgolint/darwin-x64@0.0.1':
+    resolution: {integrity: sha512-/T+STn40ebdHM7Cz6bVITynBHNWnRGKyz8CcbUDdiehhD0CTlwwNeKCKA4beQ1t/Dvc3JG6pV8dwv/2cmd+DYg==}
+    os: [darwin]
+
+  '@oxlint-tsgolint/linux-arm64@0.0.1':
+    resolution: {integrity: sha512-xp8KdgxyqLB31ISPep0LDJgyE3ucxcLc8LdlqjO+Z9k2RR0MkFs1bgpXROn5KX1eZGO5OYRdbgVX+s43TI7Dhw==}
+    os: [linux]
+
+  '@oxlint-tsgolint/linux-x64@0.0.1':
+    resolution: {integrity: sha512-6OG1DFbg1xP5UmuWynUnVkay5WbH44aiwDhIAIR8+V50Ijzzyx87CGxKbn1k0YsfaQIji5SgZi0WMiJQ5LTR2A==}
+    os: [linux]
+
+  '@oxlint-tsgolint/win32-arm64@0.0.1':
+    resolution: {integrity: sha512-szngA1G3b9DyO6NZ7qUBl8EXBt+9F6cLQ4/kdiIUwk+5LELCjFbpg2s7eGPYZaCJjf30Vo9GlTqe5HFjddvrXg==}
+    os: [win32]
+
+  '@oxlint-tsgolint/win32-x64@0.0.1':
+    resolution: {integrity: sha512-anzDRE1w3Vl/aSBLiOwnwzz17GJaXJr+X3OTWwwV9cHg+TWEhLpUDo+d2pAoulCHoZTjN/k8A9wHg0IGuqnOfA==}
+    os: [win32]
+
+  '@oxlint/darwin-arm64@1.11.1':
+    resolution: {integrity: sha512-/9ohoWJoPHLXDBRQqPn3jIwB2QXt+Pv6dR1r6fmrcm5RiTyqf40zK10gMDl8rbw8ONmzgrevdxweV0iRuC9pcQ==}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxlint/darwin-x64@1.6.0':
-    resolution: {integrity: sha512-75fJfF/9xNypr7cnOYoZBhfmG1yP7ex3pUOeYGakmtZRffO9z1i1quLYhjZsmaDXsAIZ3drMhenYHMmFKS3SRg==}
+  '@oxlint/darwin-x64@1.11.1':
+    resolution: {integrity: sha512-snwKjdJO+mGwp2xYBxdwJorad4ZVeZDq2FV3ZcgvqCmf6pg+eJdm/jtlfXb44KfEDlBCvMa0zV48bjY+tg31rA==}
     cpu: [x64]
     os: [darwin]
 
-  '@oxlint/linux-arm64-gnu@1.6.0':
-    resolution: {integrity: sha512-YhXGf0FXa72bEt4F7eTVKx5X3zWpbAOPnaA/dZ6/g8tGhw1m9IFjrabVHFjzcx3dQny4MgA59EhyElkDvpUe8A==}
+  '@oxlint/linux-arm64-gnu@1.11.1':
+    resolution: {integrity: sha512-WI3LcUlowzlu2wQb0XRIq1Zv1AMkQDrU7+zHVtiokFbjyioUcSOomwN+ntlZozPwFRbuLUXL+wq5qePnLhE90Q==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint/linux-arm64-musl@1.6.0':
-    resolution: {integrity: sha512-T3JDhx8mjGjvh5INsPZJrlKHmZsecgDYvtvussKRdkc1Nnn7WC+jH9sh5qlmYvwzvmetlPVNezAoNvmGO9vtMg==}
+  '@oxlint/linux-arm64-musl@1.11.1':
+    resolution: {integrity: sha512-Fc4gW7nf8dGOvsvTqIJDCvWiDCxQtnX3KDM69G+0d23ljiXdi2/EEcWNcvobBwi0CqlpO+TdQiRYDLHEJxSRfA==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint/linux-x64-gnu@1.6.0':
-    resolution: {integrity: sha512-Dx7ghtAl8aXBdqofJpi338At6lkeCtTfoinTYQXd9/TEJx+f+zCGNlQO6nJz3ydJBX48FDuOFKkNC+lUlWrd8w==}
+  '@oxlint/linux-x64-gnu@1.11.1':
+    resolution: {integrity: sha512-3UNP5PAE/IHWMSfrwybMbjppQXMveFzLMMZjGk8tEAm9aj4yeX6Z3O+ns6fQHStbb6PyrDMncAyNl/qxUfmp7A==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint/linux-x64-musl@1.6.0':
-    resolution: {integrity: sha512-7KvMGdWmAZtAtg6IjoEJHKxTXdAcrHnUnqfgs0JpXst7trquV2mxBeRZusQXwxpu4HCSomKMvJfsp1qKaqSFDg==}
+  '@oxlint/linux-x64-musl@1.11.1':
+    resolution: {integrity: sha512-CmRm8rFT6MwKvcpcw1IM+QHtyh3iOKRewJn3VOHYlRzw+VKQuvUbUnWHgROtr6V8UOiRkrSy3Mvo/d5Fc+r/lw==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint/win32-arm64@1.6.0':
-    resolution: {integrity: sha512-iSGC9RwX+dl7o5KFr5aH7Gq3nFbkq/3Gda6mxNPMvNkWrgXdIyiINxpyD8hJu566M+QSv1wEAu934BZotFDyoQ==}
+  '@oxlint/win32-arm64@1.11.1':
+    resolution: {integrity: sha512-htSR1NHMnRV5qXDoZJcFxKObgLyBvA4g9eIhzDTsTyw7e2ZDR/SVOli2IZB31ghCwEYcSV7yoZgfOgjNbgvDJA==}
     cpu: [arm64]
     os: [win32]
 
-  '@oxlint/win32-x64@1.6.0':
-    resolution: {integrity: sha512-jOj3L/gfLc0IwgOTkZMiZ5c673i/hbAmidlaylT0gE6H18hln9HxPgp5GCf4E4y6mwEJlW8QC5hQi221+9otdA==}
+  '@oxlint/win32-x64@1.11.1':
+    resolution: {integrity: sha512-yjWjx0kf6+osvXdqdkLmSwPxvN9bJ+0sr+KLEgxCAZxfqy9nNTuflIwk6x5sm6lS4+qzCY7RrMYcksQ6Ky+0CA==}
     cpu: [x64]
     os: [win32]
 
@@ -1639,8 +1663,8 @@ packages:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
 
-  core-js-compat@3.44.0:
-    resolution: {integrity: sha512-JepmAj2zfl6ogy34qfWtcE7nHKAJnKsQFRn++scjVS2bZFllwptzw61BZcZFYBPpUznLfAvh0LGhxKppk04ClA==}
+  core-js-compat@3.45.0:
+    resolution: {integrity: sha512-gRoVMBawZg0OnxaVv3zpqLLxaHmsubEGyTnqdpI/CEBvX4JadI1dMSHxagThprYRtSVbuQxvi6iUatdPxohHpA==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -2373,8 +2397,8 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
-  jake@10.9.2:
-    resolution: {integrity: sha512-2P4SQ0HrLQ+fw6llpLnOaGAvN2Zu6778SJMrCUwns4fOoG9ayrTiZk3VV8sCPkVZF8ab0zksVpS8FDY5pRCNBA==}
+  jake@10.9.4:
+    resolution: {integrity: sha512-wpHYzhxiVQL+IV05BLE2Xn34zW1S223hvjtqk0+gsPrwd/8JNLXJgZZM/iPFsYc1xyphF+6M6EvdE5E9MBGkDA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -2673,8 +2697,12 @@ packages:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
 
-  oxlint@1.6.0:
-    resolution: {integrity: sha512-jtaD65PqzIa1udvSxxscTKBxYKuZoFXyKGLiU1Qjo1ulq3uv/fQDtoV1yey1FrQZrQjACGPi1Widsy1TucC7Jg==}
+  oxlint-tsgolint@0.0.1:
+    resolution: {integrity: sha512-gH6EpIr2oBVperOONVzTTNYmOu6pYPipVyzWB+CfYO13vH+6O9kINUyG4rr3RXDaKdTx8UvxgRORXdSGH1iydA==}
+    hasBin: true
+
+  oxlint@1.11.1:
+    resolution: {integrity: sha512-24c8BHX2deW0H7GAjkHP28+W4P3qO+2l0R/wz8jj+D4Sq/eC+K2Zyu6uN3bVXeHfG3z4U8shWD5hE+yPMisPDA==}
     engines: {node: '>=8.*'}
     hasBin: true
 
@@ -3093,6 +3121,7 @@ packages:
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
+    deprecated: The work that was done in this beta branch won't be included in future versions
 
   sourcemap-codec@1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
@@ -3799,7 +3828,7 @@ snapshots:
     dependencies:
       '@babel/template': 7.27.2
       '@babel/traverse': 7.28.0
-      '@babel/types': 7.28.1
+      '@babel/types': 7.28.2
     transitivePeerDependencies:
       - supports-color
 
@@ -4315,7 +4344,7 @@ snapshots:
       babel-plugin-polyfill-corejs2: 0.4.14(@babel/core@7.28.0)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.0)
       babel-plugin-polyfill-regenerator: 0.6.5(@babel/core@7.28.0)
-      core-js-compat: 3.44.0
+      core-js-compat: 3.45.0
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -4324,10 +4353,10 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.0
       '@babel/helper-plugin-utils': 7.27.1
-      '@babel/types': 7.28.1
+      '@babel/types': 7.28.2
       esutils: 2.0.3
 
-  '@babel/runtime@7.27.6': {}
+  '@babel/runtime@7.28.2': {}
 
   '@babel/standalone@7.26.7': {}
 
@@ -4359,7 +4388,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@babel/types@7.28.1':
+  '@babel/types@7.28.2':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
@@ -4583,28 +4612,46 @@ snapshots:
       - rollup
       - supports-color
 
-  '@oxlint/darwin-arm64@1.6.0':
+  '@oxlint-tsgolint/darwin-arm64@0.0.1':
     optional: true
 
-  '@oxlint/darwin-x64@1.6.0':
+  '@oxlint-tsgolint/darwin-x64@0.0.1':
     optional: true
 
-  '@oxlint/linux-arm64-gnu@1.6.0':
+  '@oxlint-tsgolint/linux-arm64@0.0.1':
     optional: true
 
-  '@oxlint/linux-arm64-musl@1.6.0':
+  '@oxlint-tsgolint/linux-x64@0.0.1':
     optional: true
 
-  '@oxlint/linux-x64-gnu@1.6.0':
+  '@oxlint-tsgolint/win32-arm64@0.0.1':
     optional: true
 
-  '@oxlint/linux-x64-musl@1.6.0':
+  '@oxlint-tsgolint/win32-x64@0.0.1':
     optional: true
 
-  '@oxlint/win32-arm64@1.6.0':
+  '@oxlint/darwin-arm64@1.11.1':
     optional: true
 
-  '@oxlint/win32-x64@1.6.0':
+  '@oxlint/darwin-x64@1.11.1':
+    optional: true
+
+  '@oxlint/linux-arm64-gnu@1.11.1':
+    optional: true
+
+  '@oxlint/linux-arm64-musl@1.11.1':
+    optional: true
+
+  '@oxlint/linux-x64-gnu@1.11.1':
+    optional: true
+
+  '@oxlint/linux-x64-musl@1.11.1':
+    optional: true
+
+  '@oxlint/win32-arm64@1.11.1':
+    optional: true
+
+  '@oxlint/win32-x64@1.11.1':
     optional: true
 
   '@pkgjs/parseargs@0.11.0':
@@ -5166,7 +5213,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.0
       '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.0)
-      core-js-compat: 3.44.0
+      core-js-compat: 3.45.0
     transitivePeerDependencies:
       - supports-color
 
@@ -5360,7 +5407,7 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
-  core-js-compat@3.44.0:
+  core-js-compat@3.45.0:
     dependencies:
       browserslist: 4.25.1
 
@@ -5470,7 +5517,7 @@ snapshots:
 
   ejs@3.1.10:
     dependencies:
-      jake: 10.9.2
+      jake: 10.9.4
 
   electron-to-chromium@1.5.178: {}
 
@@ -6171,12 +6218,11 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jake@10.9.2:
+  jake@10.9.4:
     dependencies:
       async: 3.2.6
-      chalk: 4.1.2
       filelist: 1.0.4
-      minimatch: 3.1.2
+      picocolors: 1.1.1
 
   jiti@1.21.7: {}
 
@@ -6433,16 +6479,27 @@ snapshots:
       object-keys: 1.1.1
       safe-push-apply: 1.0.0
 
-  oxlint@1.6.0:
+  oxlint-tsgolint@0.0.1:
     optionalDependencies:
-      '@oxlint/darwin-arm64': 1.6.0
-      '@oxlint/darwin-x64': 1.6.0
-      '@oxlint/linux-arm64-gnu': 1.6.0
-      '@oxlint/linux-arm64-musl': 1.6.0
-      '@oxlint/linux-x64-gnu': 1.6.0
-      '@oxlint/linux-x64-musl': 1.6.0
-      '@oxlint/win32-arm64': 1.6.0
-      '@oxlint/win32-x64': 1.6.0
+      '@oxlint-tsgolint/darwin-arm64': 0.0.1
+      '@oxlint-tsgolint/darwin-x64': 0.0.1
+      '@oxlint-tsgolint/linux-arm64': 0.0.1
+      '@oxlint-tsgolint/linux-x64': 0.0.1
+      '@oxlint-tsgolint/win32-arm64': 0.0.1
+      '@oxlint-tsgolint/win32-x64': 0.0.1
+    optional: true
+
+  oxlint@1.11.1:
+    optionalDependencies:
+      '@oxlint/darwin-arm64': 1.11.1
+      '@oxlint/darwin-x64': 1.11.1
+      '@oxlint/linux-arm64-gnu': 1.11.1
+      '@oxlint/linux-arm64-musl': 1.11.1
+      '@oxlint/linux-x64-gnu': 1.11.1
+      '@oxlint/linux-x64-musl': 1.11.1
+      '@oxlint/win32-arm64': 1.11.1
+      '@oxlint/win32-x64': 1.11.1
+      oxlint-tsgolint: 0.0.1
 
   p-limit@3.1.0:
     dependencies:
@@ -7498,7 +7555,7 @@ snapshots:
       '@apideck/better-ajv-errors': 0.3.6(ajv@8.17.1)
       '@babel/core': 7.28.0
       '@babel/preset-env': 7.28.0(@babel/core@7.28.0)
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       '@rollup/plugin-babel': 5.3.1(@babel/core@7.28.0)(rollup@2.79.2)
       '@rollup/plugin-node-resolve': 15.3.1(rollup@2.79.2)
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.2)
