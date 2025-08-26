@@ -35,7 +35,7 @@
     "eslint": "^9.33.0",
     "eslint-plugin-oxlint": "^0.15.11",
     "eslint-plugin-playwright": "^2.1.0",
-    "eslint-plugin-vue": "^9.30.0",
+    "eslint-plugin-vue": "^10.4.0",
     "npm-run-all2": "^7.0.1",
     "oxlint": "^1.11.1",
     "postcss": "^8.5.6",
