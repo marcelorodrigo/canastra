@@ -58,7 +58,7 @@ export const useCanastraStore = defineStore(
       removeScore,
     }
   },
-  {
-    persist: true,
-  },
+  // {
+  //   persist: true,
+  // },
 )
