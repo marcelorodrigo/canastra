@@ -18,11 +18,7 @@
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
       <tr v-for="(round, i) in store.rounds" :key="i">
-        <td
-          v-for="team in store.teams"
-          :key="team"
-          class="px-6 py-4 whitespace-nowrap"
-        >
+        <td v-for="team in store.teams" :key="team" class="px-6 py-4 whitespace-nowrap">
           {{ round[team - 1] }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
@@ -47,10 +43,10 @@
 </template>
 
 <script setup lang="ts">
-import { useCanastraStore } from "@/stores/canastra.ts";
-const store = useCanastraStore();
+import { useCanastraStore } from '@/stores/canastra.ts'
+const store = useCanastraStore()
 
 const remove = (row: number) => {
-  store.removeScore(row);
-};
+  store.removeScore(row)
+}
 </script>

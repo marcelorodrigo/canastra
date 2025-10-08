@@ -1,51 +1,64 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 
-interface CanastraState {
-  teams: number;
-  names: string[];
-  rounds: number[][];
-  winningPoints: number;
-}
+export const useCanastraStore = defineStore(
+  'scores',
+  () => {
+    // State
+    const teams = ref<number>(0)
+    const names = ref<string[]>(new Array(2).fill(''))
+    const rounds = ref<number[][]>([])
+    const winningPoints = ref<number>(3000)
 
-export const useCanastraStore = defineStore("scores", {
-  persist: true,
-  state: (): CanastraState => ({
-    teams: 0,
-    names: Array(2).fill(""),
-    rounds: [],
-    winningPoints: 3000,
-  }),
-  getters: {
-    totals: (state) => {
-      const totals: number[] = [];
-      for (let i = 0; i < state.teams; i++) {
-        totals[i] = state.rounds.reduce(
+    // Getters
+    const totals = computed((): number[] => {
+      const totalsArray: number[] = []
+      for (let i = 0; i < teams.value; i++) {
+        totalsArray[i] = rounds.value.reduce(
           (accumulator, round) => accumulator + (round[i] || 0),
           0,
-        );
+        )
       }
-      return totals;
-    },
-  },
-  actions: {
-    reset() {
-      this.teams = 0;
-      this.names = Array(2).fill("");
-      this.rounds = [];
-      this.winningPoints = 3000;
-    },
-    revanche() {
-      this.rounds = [];
-    },
-    addScore(scores: number[]) {
-      if (!scores || scores.length !== this.teams) {
-        console.error("Scores provided do not match teams playing");
-        return;
+      return totalsArray
+    })
+
+    // Actions
+    function reset() {
+      teams.value = 0
+      names.value = new Array(2).fill('')
+      rounds.value = []
+      winningPoints.value = 3000
+    }
+
+    function revanche() {
+      rounds.value = []
+    }
+
+    function addScore(scores: number[]) {
+      if (!scores || scores.length !== teams.value) {
+        console.error('Scores provided do not match teams playing')
+        return
       }
-      this.rounds.push(scores);
-    },
-    removeScore(row: number) {
-      this.rounds.splice(row, 1);
-    },
+      rounds.value.push(scores)
+    }
+
+    function removeScore(row: number) {
+      rounds.value.splice(row, 1)
+    }
+
+    return {
+      teams,
+      names,
+      rounds,
+      winningPoints,
+      totals,
+      reset,
+      revanche,
+      addScore,
+      removeScore,
+    }
   },
-});
+  {
+    persist: true,
+  },
+)

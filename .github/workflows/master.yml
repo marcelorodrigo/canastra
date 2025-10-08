@@ -8,6 +8,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          show-progress: false
+          fetch-depth: 0
       - uses: pnpm/action-setup@v4
         name: Configure PNPM
         with:
@@ -21,3 +24,5 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Code Lint
         run: pnpm lint
+      - name: Run Tests
+        run: pnpm test:unit
