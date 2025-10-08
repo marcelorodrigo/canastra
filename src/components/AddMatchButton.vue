@@ -11,10 +11,7 @@
         Apagar tudo
       </button>
     </div>
-    <div
-      v-if="apagarDialog"
-      class="fixed inset-0 flex items-center justify-center bg-black/50"
-    >
+    <div v-if="apagarDialog" class="fixed inset-0 flex items-center justify-center bg-black/50">
       <div class="bg-white rounded-lg p-6 w-auto">
         <div class="text-lg font-bold mb-4">Apagar tudo</div>
         <div class="mb-4">
@@ -35,10 +32,7 @@
       </div>
     </div>
 
-    <div
-      v-if="revancheDialog"
-      class="fixed inset-0 flex items-center justify-center bg-black/50"
-    >
+    <div v-if="revancheDialog" class="fixed inset-0 flex items-center justify-center bg-black/50">
       <div class="bg-white rounded-lg p-6 w-auto">
         <div class="text-lg font-bold mb-4">Revanche?</div>
         <div class="mb-4">
@@ -59,10 +53,7 @@
       </div>
     </div>
 
-    <div
-      v-if="dialog"
-      class="fixed inset-0 flex items-center justify-center bg-black/50"
-    >
+    <div v-if="dialog" class="fixed inset-0 flex items-center justify-center bg-black/50">
       <div class="bg-white rounded-lg p-6 w-auto">
         <div class="text-lg font-bold mb-4">Adicionar Pontos</div>
         <div v-for="(team, index) in store.teams" :key="index" class="mb-4">
@@ -77,7 +68,9 @@
           />
         </div>
         <div class="flex justify-end">
-          <button class="bg-blue-500 text-white py-2 px-4 rounded-sm" @click="add">Adicionar</button>
+          <button class="bg-blue-500 text-white py-2 px-4 rounded-sm" @click="add">
+            Adicionar
+          </button>
         </div>
       </div>
     </div>
