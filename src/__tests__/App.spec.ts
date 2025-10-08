@@ -7,8 +7,8 @@ describe('App', () => {
   it('mounts renders properly', () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [createPinia()]
-      }
+        plugins: [createPinia()],
+      },
     })
     const h1 = wrapper.find('h1')
     expect(h1.exists()).toBe(true)
