@@ -10,9 +10,9 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     vue(),
+    vueDevTools(),
     VitePWA({ registerType: 'autoUpdate' }),
     tailwindcss(),
-    vueDevTools(),
   ],
   resolve: {
     alias: {
