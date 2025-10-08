@@ -24,3 +24,5 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Code Lint
         run: pnpm lint
+      - name: Run Tests
+        run: pnpm test:unit
