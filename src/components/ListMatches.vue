@@ -5,7 +5,7 @@
       <ScoreCard
         v-for="(total, index) in store.totals"
         :key="index"
-        :teamName="store.names[index]"
+        :teamName="store.names[index] ?? ''"
         :score="total"
         :isWinner="isWinner(total)"
         :winningPoints="store.winningPoints"
@@ -18,7 +18,7 @@
       <ScoreCard
         v-for="(total, index) in store.totals"
         :key="index"
-        :teamName="store.names[index]"
+        :teamName="store.names[index] ?? ''"
         :score="total"
         :isWinner="isWinner(total)"
         :winningPoints="store.winningPoints"
