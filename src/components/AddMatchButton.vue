@@ -13,11 +13,17 @@
 
       <!-- Action buttons (appear above FAB when expanded) -->
       <Transition name="fab-actions">
-        <div v-if="isExpanded" class="absolute bottom-16 right-0 space-y-3">
+        <div v-if="isExpanded" class="absolute bottom-16 right-0 w-[50vw] min-w-[200px] max-w-md space-y-3">
+          <ActionButton
+            icon="➕"
+            label="Adicionar Pontos"
+            color="green"
+            @click="openScoreSheet"
+          />
           <ActionButton
             icon="🔄"
             label="Revanche"
-            color="green"
+            color="blue"
             @click="openRevancheModal"
           />
           <ActionButton
@@ -97,10 +103,6 @@ const toggleMenu = () => {
     closeMenu()
   } else {
     isExpanded.value = true
-    // Auto-show score input for primary action
-    setTimeout(() => {
-      openScoreSheet()
-    }, 200)
   }
 }
 

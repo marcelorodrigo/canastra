@@ -1,19 +1,12 @@
 <template>
-  <div class="flex items-center space-x-3 animate-fade-in">
-    <!-- Action button -->
-    <button
-      @click="$emit('click')"
-      class="w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white text-lg touch-manipulation transform transition-all duration-300 hover:scale-110 active:scale-95"
-      :class="buttonClass"
-    >
-      {{ icon }}
-    </button>
-
-    <!-- Label -->
-    <div class="px-3 py-2 bg-white/90 backdrop-blur-sm rounded-lg shadow-md">
-      <span class="text-sm font-medium text-gray-700">{{ label }}</span>
-    </div>
-  </div>
+  <button
+    @click="$emit('click')"
+    class="w-full min-w-[200px] h-14 px-4 rounded-xl shadow-lg flex items-center justify-start space-x-3 text-white touch-manipulation transform transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl"
+    :class="buttonClass"
+  >
+    <span class="text-2xl">{{ icon }}</span>
+    <span class="text-base font-medium flex-1 text-left">{{ label }}</span>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -37,11 +30,13 @@ const buttonClass = computed(() => {
   const baseClass = 'hover:shadow-xl'
   switch (props.color) {
     case 'red':
-      return `${baseClass} bg-red-500 hover:bg-red-600`
+      return `${baseClass} bg-red-400 hover:bg-red-500`
     case 'blue':
-      return `${baseClass} bg-blue-500 hover:bg-blue-600`
+      return `${baseClass} bg-blue-400 hover:bg-blue-500`
+    case 'green':
+      return `${baseClass} bg-green-400 hover:bg-green-500`
     case 'orange':
-      return `${baseClass} gradient-accent`
+      return `${baseClass} bg-orange-400 hover:bg-orange-500`
     default:
       return `${baseClass} gradient-primary`
   }
