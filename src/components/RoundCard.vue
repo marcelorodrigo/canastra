@@ -36,7 +36,7 @@
           :key="index"
           class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
         >
-          <span class="text-sm font-medium text-gray-700">{{ teamNames[index] }}</span>
+          <span class="text-sm font-medium text-gray-700">{{ teamNames[index] ?? '' }}</span>
           <span
             class="text-lg font-bold animate-count-up"
             :class="getScoreClass(score)"
