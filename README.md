@@ -1,73 +1,145 @@
-# canastra
+# Canastra Score Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+A Progressive Web App (PWA) for tracking scores in Canastra card games. Built with Vue 3, TypeScript, and Tailwind CSS, this app helps players keep track of points across multiple rounds with an intuitive, mobile-friendly interface.
 
-## Recommended IDE Setup
+## 🎯 Features
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Multi-team support**: Track scores for 2 or 3 teams
+- **Persistent storage**: Game state is automatically saved locally
+- **Score tracking**: Add, view, and remove scores for each round
+- **Win conditions**: Automatic detection when a team reaches the winning points (default: 3000)
+- **Obrigação tracking**: Visual indicators when teams reach the obrigação threshold (default: 1500)
+- **Game management**: Start new games or play a rematch
+- **Progressive Web App**: Install on your device and use offline
+- **Responsive design**: Optimized for mobile and tablet devices
 
-## Recommended Browser Setup
+## 🛠️ Tech Stack
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- **Framework**: Vue 3 with Composition API and `<script setup>`
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **State Management**: Pinia with persistence plugin
+- **Build Tool**: Vite
+- **PWA Support**: vite-plugin-pwa
+- **Testing**: Vitest (unit) and Playwright (e2e)
+- **Utilities**: VueUse
 
-## Type Support for `.vue` Imports in TS
+## 📋 Requirements
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Node.js v20.19.0 or v22.12.0+
+- pnpm (recommended package manager)
 
-## Customize configuration
+## 🚀 Getting Started
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+### Installation
 
 ```sh
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development
+
+Run the development server with hot-reload:
 
 ```sh
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Production Build
+
+Type-check, compile and minify for production:
 
 ```sh
 pnpm build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Preview the production build:
+
+```sh
+pnpm preview
+```
+
+## 🧪 Testing
+
+### Unit Tests
+
+Run unit tests with [Vitest](https://vitest.dev/):
 
 ```sh
 pnpm test:unit
 ```
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+### End-to-End Tests
+
+Run E2E tests with [Playwright](https://playwright.dev):
 
 ```sh
 # Install browsers for the first run
 npx playwright install
 
-# When testing on CI, must build the project first
+# Build the project first (required for CI)
 pnpm build
 
-# Runs the end-to-end tests
+# Run all E2E tests
 pnpm test:e2e
-# Runs the tests only on Chromium
+
+# Run tests only on Chromium
 pnpm test:e2e --project=chromium
-# Runs the tests of a specific file
+
+# Run tests for a specific file
 pnpm test:e2e tests/example.spec.ts
-# Runs the tests in debug mode
+
+# Run tests in debug mode
 pnpm test:e2e --debug
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## 🔧 Development Tools
+
+### Linting
+
+Lint and fix code with [ESLint](https://eslint.org/):
 
 ```sh
 pnpm lint
 ```
+
+### Code Formatting
+
+Format code with Prettier:
+
+```sh
+pnpm format
+```
+
+### Type Checking
+
+Run TypeScript type checking:
+
+```sh
+pnpm type-check
+```
+
+## 💻 Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension
+- Disable Vetur if you have it installed (conflicts with Vue Official)
+
+## 🌐 Browser Extensions (Recommended)
+
+### Chromium-based browsers (Chrome, Edge, Brave, etc.)
+- [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Enable Custom Object Formatters](http://bit.ly/object-formatters) in DevTools
+
+### Firefox
+- [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+- [Enable Custom Object Formatters](https://fxdx.dev/firefox-devtools-custom-object-formatters/) in DevTools
+
+## 📱 PWA Installation
+
+Once deployed, users can install the app on their devices:
+- **Mobile**: Tap the "Add to Home Screen" option in your browser
+- **Desktop**: Look for the install icon in the address bar
+
+## 📄 License
+
+See [LICENSE](LICENSE) file for details.
