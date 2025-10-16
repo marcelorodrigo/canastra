@@ -17,10 +17,7 @@
 
     <!-- Step content with transitions -->
     <div class="relative overflow-hidden">
-      <Transition
-        :name="slideDirection"
-        mode="out-in"
-      >
+      <Transition :name="slideDirection" mode="out-in">
         <div :key="currentStep">
           <!-- Step 1: Team count selection -->
           <div v-if="currentStep === 1" class="space-y-6">
@@ -35,9 +32,11 @@
                 :key="option.value"
                 @click="selectTeamCount(option.value)"
                 class="w-full p-6 rounded-2xl border-2 transition-all duration-200 touch-manipulation"
-                :class="selectedTeams === option.value
-                  ? 'border-primary-500 bg-primary-50 text-primary-700'
-                  : 'border-gray-200 bg-white hover:border-gray-300'"
+                :class="
+                  selectedTeams === option.value
+                    ? 'border-primary-500 bg-primary-50 text-primary-700'
+                    : 'border-gray-200 bg-white hover:border-gray-300'
+                "
               >
                 <div class="flex items-center justify-between">
                   <div class="text-left">
@@ -58,14 +57,8 @@
             </div>
 
             <div class="space-y-4">
-              <div
-                v-for="i in selectedTeams"
-                :key="i"
-                class="relative"
-              >
-                <label class="block text-sm font-medium text-gray-700 mb-2">
-                  Equipe {{ i }}
-                </label>
+              <div v-for="i in selectedTeams" :key="i" class="relative">
+                <label class="block text-sm font-medium text-gray-700 mb-2"> Equipe {{ i }} </label>
                 <input
                   v-model="teamNames[i - 1]"
                   type="text"
@@ -99,9 +92,11 @@
                   :key="preset"
                   @click="winningPoints = preset"
                   class="p-4 rounded-xl border-2 text-center transition-all duration-200 touch-manipulation"
-                  :class="winningPoints === preset
-                    ? 'border-primary-500 bg-primary-50 text-primary-700'
-                    : 'border-gray-200 bg-white hover:border-gray-300'"
+                  :class="
+                    winningPoints === preset
+                      ? 'border-primary-500 bg-primary-50 text-primary-700'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  "
                 >
                   <div class="text-xl font-bold">{{ preset }}</div>
                   <div class="text-xs text-gray-500">pontos</div>
@@ -124,9 +119,11 @@
                   :key="preset"
                   @click="obrigacaoPoints = preset"
                   class="p-4 rounded-xl border-2 text-center transition-all duration-200 touch-manipulation"
-                  :class="obrigacaoPoints === preset
-                    ? 'border-primary-500 bg-primary-50 text-primary-700'
-                    : 'border-gray-200 bg-white hover:border-gray-300'"
+                  :class="
+                    obrigacaoPoints === preset
+                      ? 'border-primary-500 bg-primary-50 text-primary-700'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  "
                 >
                   <div class="text-xl font-bold">{{ preset }}</div>
                   <div class="text-xs text-gray-500">pontos</div>
@@ -152,9 +149,11 @@
           @click="nextStep"
           :disabled="!canProceed"
           class="flex-1 py-4 px-6 rounded-xl font-semibold text-white touch-manipulation transition-all duration-200"
-          :class="canProceed
-            ? 'gradient-primary hover:shadow-lg transform hover:scale-105'
-            : 'bg-gray-300 cursor-not-allowed'"
+          :class="
+            canProceed
+              ? 'gradient-primary hover:shadow-lg transform hover:scale-105'
+              : 'bg-gray-300 cursor-not-allowed'
+          "
         >
           {{ currentStep === totalSteps ? 'Iniciar Jogo' : 'Próximo' }}
         </button>
@@ -188,14 +187,14 @@ const teamOptions = [
     value: 2,
     label: '2 Equipes',
     description: 'Clássico jogo em duplas',
-    icon: '👥'
+    icon: '👥',
   },
   {
     value: 3,
     label: '3 Equipes',
     description: 'Mais desafio e estratégia',
-    icon: '👨‍👩‍👧'
-  }
+    icon: '👨‍👩‍👧',
+  },
 ]
 
 // Step 3 presets
@@ -233,7 +232,7 @@ const canProceed = computed(() => {
     case 1:
       return selectedTeams.value > 0
     case 2:
-      return teamNames.value.slice(0, selectedTeams.value).every(name => name.trim())
+      return teamNames.value.slice(0, selectedTeams.value).every((name) => name.trim())
     case 3:
       return winningPoints.value >= 100
     case 4:

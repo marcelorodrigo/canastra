@@ -2,11 +2,7 @@
   <div class="space-y-6">
     <!-- Team score inputs -->
     <div class="space-y-4">
-      <div
-        v-for="(_, index) in store.teams"
-        :key="index"
-        class="relative"
-      >
+      <div v-for="(_, index) in store.teams" :key="index" class="relative">
         <label class="block text-sm font-medium text-gray-700 mb-2">
           {{ store.names[index] }}
         </label>
@@ -41,9 +37,11 @@
         @click="submitScore"
         :disabled="!canSubmit"
         class="w-full py-4 px-6 rounded-xl font-semibold text-white touch-manipulation transition-all duration-200"
-        :class="canSubmit
-          ? 'gradient-primary hover:shadow-lg transform hover:scale-105'
-          : 'bg-gray-300 cursor-not-allowed'"
+        :class="
+          canSubmit
+            ? 'gradient-primary hover:shadow-lg transform hover:scale-105'
+            : 'bg-gray-300 cursor-not-allowed'
+        "
       >
         Adicionar Pontos
       </button>
@@ -78,7 +76,7 @@ const totalScore = computed(() => {
 })
 
 const canSubmit = computed(() => {
-  return scores.value.some(score => score !== 0)
+  return scores.value.some((score) => score !== 0)
 })
 
 const totalClass = computed(() => {

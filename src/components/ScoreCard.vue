@@ -5,18 +5,27 @@
       layoutClass,
       { 'ring-2 ring-green-500 bg-green-50': isWinner },
       { 'ring-2 ring-orange-500 bg-orange-50': isInObrigacao && !isWinner },
-      { 'ring-1 ring-primary-300': isLeading && !isWinner && !isInObrigacao }
+      { 'ring-1 ring-primary-300': isLeading && !isWinner && !isInObrigacao },
     ]"
   >
-    <div class="flex items-center justify-between" :class="{ 'flex-col space-y-2': layout === 'vertical' }">
+    <div
+      class="flex items-center justify-between"
+      :class="{ 'flex-col space-y-2': layout === 'vertical' }"
+    >
       <!-- Team name and status -->
       <div class="flex items-center space-x-2">
         <div class="text-lg font-semibold text-gray-900">{{ teamName }}</div>
         <div v-if="isWinner" class="text-lg animate-bounce-subtle">👑</div>
-        <div v-else-if="isInObrigacao" class="text-sm px-2 py-1 bg-orange-100 text-orange-700 rounded-full font-medium">
+        <div
+          v-else-if="isInObrigacao"
+          class="text-sm px-2 py-1 bg-orange-100 text-orange-700 rounded-full font-medium"
+        >
           Obrigação
         </div>
-        <div v-else-if="isLeading" class="text-sm px-2 py-1 bg-primary-100 text-primary-700 rounded-full font-medium">
+        <div
+          v-else-if="isLeading"
+          class="text-sm px-2 py-1 bg-primary-100 text-primary-700 rounded-full font-medium"
+        >
           Liderando
         </div>
       </div>
@@ -61,19 +70,22 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   obrigacaoPoints: 1500,
   isWinner: false,
-  layout: 'vertical'
+  layout: 'vertical',
 })
 
 // Animate score changes
 const scoreRef = ref(props.score)
 const animatedScore = useTransition(scoreRef, {
   duration: 500,
-  transition: [0.4, 0, 0.2, 1]
+  transition: [0.4, 0, 0.2, 1],
 })
 
-watch(() => props.score, (newScore) => {
-  scoreRef.value = newScore
-})
+watch(
+  () => props.score,
+  (newScore) => {
+    scoreRef.value = newScore
+  },
+)
 
 const isLeading = computed(() => {
   return props.score > 0 && !props.isWinner

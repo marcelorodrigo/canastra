@@ -19,7 +19,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  color: 'green'
+  color: 'green',
 })
 
 defineEmits<{

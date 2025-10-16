@@ -5,26 +5,21 @@
         <!-- Logo and title -->
         <div class="flex items-center space-x-3">
           <div class="relative">
-            <img
-              src="@/assets/logo.svg"
-              alt="Canastra"
-              class="h-8 w-8 animate-bounce-subtle"
-            />
-            <div v-if="hasActiveGame" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <img src="@/assets/logo.svg" alt="Canastra" class="h-8 w-8 animate-bounce-subtle" />
+            <div
+              v-if="hasActiveGame"
+              class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"
+            ></div>
           </div>
           <div>
-            <h1 class="text-lg font-bold text-gray-800">Canastra</h1>
+            <h1 class="text-lg font-bold text-gray-800">Marcador de Canastra</h1>
             <p v-if="hasActiveGame" class="text-xs text-gray-600">{{ gameStatus }}</p>
           </div>
         </div>
 
         <!-- Game summary (when active) -->
         <div v-if="hasActiveGame" class="flex space-x-2">
-          <div
-            v-for="(total, index) in store.totals"
-            :key="index"
-            class="text-center"
-          >
+          <div v-for="(total, index) in store.totals" :key="index" class="text-center">
             <div class="text-xs font-medium text-gray-600">{{ store.names[index] }}</div>
             <div class="text-sm font-bold" :class="getScoreColor(total)">{{ total }}</div>
           </div>
@@ -53,7 +48,7 @@ const getScoreColor = (score: number) => {
   const isLeading = score === Math.max(...store.totals)
 
   if (isWinning) return 'text-green-600'
-  if (isLeading && store.totals.filter(t => t === score).length === 1) return 'text-primary-600'
+  if (isLeading && store.totals.filter((t) => t === score).length === 1) return 'text-primary-600'
   return 'text-gray-900'
 }
 </script>
@@ -75,7 +70,8 @@ const getScoreColor = (score: number) => {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {

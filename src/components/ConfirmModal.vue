@@ -77,7 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
   confirmText: 'Confirmar',
   cancelText: 'Cancelar',
   confirmColor: 'green',
-  icon: '❓'
+  icon: '❓',
 })
 
 defineEmits<{
@@ -110,13 +110,16 @@ const confirmButtonClass = computed(() => {
 })
 
 // Prevent body scroll when modal is open
-watch(() => props.show, (isShown) => {
-  if (isShown) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
-})
+watch(
+  () => props.show,
+  (isShown) => {
+    if (isShown) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  },
+)
 </script>
 
 <style scoped>
