@@ -1,52 +1,121 @@
 <template>
-  <table class="min-w-full divide-y divide-gray-200">
-    <thead>
-      <tr>
-        <th
-          v-for="team in store.teams"
-          :key="team"
-          class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-        >
-          {{ store.names[team - 1] }} [ {{ store.totals[team - 1] }} ]
-        </th>
-        <th
-          class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Ações
-        </th>
-      </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-      <tr v-for="(round, i) in store.rounds" :key="i">
-        <td v-for="team in store.teams" :key="team" class="px-6 py-4 whitespace-nowrap">
-          {{ round[team - 1] }}
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <button class="text-red-600 hover:text-red-900" @click="remove(i)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M6 2a1 1 0 00-1 1v1H3a1 1 0 100 2h1v9a2 2 0 002 2h8a2 2 0 002-2V6h1a1 1 0 100-2h-2V3a1 1 0 00-1-1H6zm3 3a1 1 0 112 0v1a1 1 0 11-2 0V5zM5 8a1 1 0 011-1h8a1 1 0 011 1v7a1 1 0 11-2 0V9H7v6a1 1 0 11-2 0V8z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="pb-24 px-8">
+    <!-- Score summary cards -->
+    <div class="grid grid-cols-2 gap-4 mb-6" v-if="store.teams === 2">
+      <ScoreCard
+        v-for="(total, index) in store.totals"
+        :key="index"
+        :teamName="store.names[index] ?? ''"
+        :score="total"
+        :isWinner="isWinner(total)"
+        :winningPoints="store.winningPoints"
+        :obrigacaoPoints="store.obrigacaoPoints"
+      />
+    </div>
+
+    <!-- Multi-team layout for 3+ teams -->
+    <div v-else class="space-y-3 mb-6">
+      <ScoreCard
+        v-for="(total, index) in store.totals"
+        :key="index"
+        :teamName="store.names[index] ?? ''"
+        :score="total"
+        :isWinner="isWinner(total)"
+        :winningPoints="store.winningPoints"
+        :obrigacaoPoints="store.obrigacaoPoints"
+        layout="horizontal"
+      />
+    </div>
+
+    <!-- Round history -->
+    <div class="space-y-3">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Histórico de Rodadas</h3>
+        <div class="text-sm text-gray-500">{{ store.rounds.length }} rodadas</div>
+      </div>
+
+      <TransitionGroup name="round" tag="div" class="space-y-3">
+        <RoundCard
+          v-for="(round, index) in reversedRounds"
+          :key="`round-${reversedRounds.length - index - 1}`"
+          :round="round"
+          :roundNumber="reversedRounds.length - index"
+          :teamNames="store.names"
+          @delete="confirmDelete(reversedRounds.length - index - 1)"
+        />
+      </TransitionGroup>
+
+      <EmptyState v-if="store.rounds.length === 0" />
+    </div>
+
+    <!-- Delete confirmation modal -->
+    <ConfirmModal
+      v-if="deleteIndex !== null"
+      :show="deleteIndex !== null"
+      title="Remover Rodada"
+      :message="`Tem certeza que deseja remover a rodada ${deleteIndex + 1}?`"
+      confirmText="Remover"
+      cancelText="Cancelar"
+      confirmColor="red"
+      icon="🗑️"
+      @confirm="deleteRound"
+      @cancel="cancelDelete"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useCanastraStore } from '@/stores/canastra.ts'
-const store = useCanastraStore()
+import { ref, computed } from 'vue'
+import { useCanastraStore } from '@/stores/canastra'
+import ScoreCard from './ScoreCard.vue'
+import RoundCard from './RoundCard.vue'
+import EmptyState from './EmptyState.vue'
+import ConfirmModal from './ConfirmModal.vue'
 
-const remove = (row: number) => {
-  store.removeScore(row)
+const store = useCanastraStore()
+const deleteIndex = ref<number | null>(null)
+
+const isWinner = (score: number) => {
+  return score >= store.winningPoints
 }
+
+const confirmDelete = (index: number) => {
+  deleteIndex.value = index
+}
+
+const deleteRound = () => {
+  if (deleteIndex.value !== null) {
+    store.removeScore(deleteIndex.value)
+    deleteIndex.value = null
+  }
+}
+
+const cancelDelete = () => {
+  deleteIndex.value = null
+}
+
+const reversedRounds = computed(() => {
+  return [...store.rounds].reverse()
+})
 </script>
+
+<style scoped>
+.round-enter-active,
+.round-leave-active {
+  transition: all 0.3s ease;
+}
+
+.round-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.round-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.round-move {
+  transition: transform 0.3s ease;
+}
+</style>
