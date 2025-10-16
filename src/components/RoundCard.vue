@@ -81,11 +81,15 @@ const touchEndX = ref(0)
 
 // Native touch event handlers for swipe gesture
 const handleTouchStart = (e: TouchEvent) => {
-  touchStartX.value = e.changedTouches[0].screenX
+  const touch = e.changedTouches[0];
+  if (!touch) return;
+  touchStartX.value = touch.screenX;
 }
 
 const handleTouchMove = (e: TouchEvent) => {
-  touchEndX.value = e.changedTouches[0].screenX
+  const touch = e.changedTouches[0];
+  if (!touch) return;
+  touchEndX.value = touch.screenX;
 }
 
 const handleTouchEnd = () => {
