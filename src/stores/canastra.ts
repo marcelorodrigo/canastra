@@ -9,6 +9,7 @@ export const useCanastraStore = defineStore(
     const names = ref<string[]>(new Array(2).fill(''))
     const rounds = ref<number[][]>([])
     const winningPoints = ref<number>(3000)
+    const obrigacaoPoints = ref<number>(1500)
 
     // Getters
     const totals = computed((): number[] => {
@@ -28,6 +29,7 @@ export const useCanastraStore = defineStore(
       names.value = new Array(2).fill('')
       rounds.value = []
       winningPoints.value = 3000
+      obrigacaoPoints.value = 1500
     }
 
     function revanche() {
@@ -51,6 +53,7 @@ export const useCanastraStore = defineStore(
       names,
       rounds,
       winningPoints,
+      obrigacaoPoints,
       totals,
       reset,
       revanche,

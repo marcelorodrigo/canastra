@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-24 px-4">
+  <div class="pb-24 px-8">
     <!-- Score summary cards -->
     <div class="grid grid-cols-2 gap-4 mb-6" v-if="store.teams === 2">
       <ScoreCard
@@ -9,6 +9,7 @@
         :score="total"
         :isWinner="isWinner(total)"
         :winningPoints="store.winningPoints"
+        :obrigacaoPoints="store.obrigacaoPoints"
       />
     </div>
 
@@ -21,6 +22,7 @@
         :score="total"
         :isWinner="isWinner(total)"
         :winningPoints="store.winningPoints"
+        :obrigacaoPoints="store.obrigacaoPoints"
         layout="horizontal"
       />
     </div>
@@ -34,12 +36,12 @@
 
       <TransitionGroup name="round" tag="div" class="space-y-3">
         <RoundCard
-          v-for="(round, index) in store.rounds"
-          :key="`round-${index}`"
+          v-for="(round, index) in reversedRounds"
+          :key="`round-${reversedRounds.length - index - 1}`"
           :round="round"
-          :roundNumber="index + 1"
+          :roundNumber="reversedRounds.length - index"
           :teamNames="store.names"
-          @delete="confirmDelete(index)"
+          @delete="confirmDelete(reversedRounds.length - index - 1)"
         />
       </TransitionGroup>
 
@@ -91,6 +93,10 @@ const deleteRound = () => {
 const cancelDelete = () => {
   deleteIndex.value = null
 }
+
+const reversedRounds = computed(() => {
+  return [...store.rounds].reverse()
+})
 </script>
 
 <style scoped>

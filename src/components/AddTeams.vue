@@ -107,19 +107,30 @@
                   <div class="text-xs text-gray-500">pontos</div>
                 </button>
               </div>
+            </div>
+          </div>
 
-              <div class="relative">
-                <label class="block text-sm font-medium text-gray-700 mb-2">
-                  Ou defina um valor personalizado:
-                </label>
-                <input
-                  v-model.number="winningPoints"
-                  type="number"
-                  min="100"
-                  max="10000"
-                  step="100"
-                  class="w-full px-4 py-4 text-lg text-center rounded-xl border-2 border-gray-200 focus:border-primary-500 focus:ring-0 transition-colors duration-200"
-                />
+          <!-- Step 4: Obrigação configuration -->
+          <div v-if="currentStep === 4" class="space-y-6">
+            <div class="text-center">
+              <h2 class="text-2xl font-bold text-gray-900 mb-2">Configuração de Obrigação</h2>
+              <p class="text-gray-600">Defina os pontos de obrigação</p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="grid grid-cols-2 gap-3">
+                <button
+                  v-for="preset in obrigacaoPresets"
+                  :key="preset"
+                  @click="obrigacaoPoints = preset"
+                  class="p-4 rounded-xl border-2 text-center transition-all duration-200 touch-manipulation"
+                  :class="obrigacaoPoints === preset
+                    ? 'border-primary-500 bg-primary-50 text-primary-700'
+                    : 'border-gray-200 bg-white hover:border-gray-300'"
+                >
+                  <div class="text-xl font-bold">{{ preset }}</div>
+                  <div class="text-xs text-gray-500">pontos</div>
+                </button>
               </div>
             </div>
           </div>
@@ -160,7 +171,7 @@ const store = useCanastraStore()
 
 // Wizard state
 const currentStep = ref(1)
-const totalSteps = 3
+const totalSteps = 4
 const slideDirection = ref('slide-next')
 const attemptedNext = ref(false)
 const focusedInput = ref(-1)
@@ -169,6 +180,7 @@ const focusedInput = ref(-1)
 const selectedTeams = ref(2)
 const teamNames = ref(['Nós', 'Eles', 'Amigues'])
 const winningPoints = ref(3000)
+const obrigacaoPoints = ref(1500)
 
 // Step 1 options
 const teamOptions = [
@@ -187,7 +199,33 @@ const teamOptions = [
 ]
 
 // Step 3 presets
-const pointPresets = [1500, 3000, 5000, 7500]
+const pointPresets = [100, 1500, 2500, 3000]
+
+// Computed obrigação presets based on winning points
+const obrigacaoPresets = computed(() => {
+  const presets = []
+  const max = winningPoints.value
+
+  // Always suggest half of winning points
+  const half = Math.floor(max / 2)
+  if (half >= 10) presets.push(half)
+
+  // Add some other reasonable options
+  const quarter = Math.floor(max / 4)
+  if (quarter >= 10 && quarter !== half) presets.push(quarter)
+
+  const threeQuarters = Math.floor((max * 3) / 4)
+  if (threeQuarters >= 10 && threeQuarters !== half && threeQuarters < max) {
+    presets.push(threeQuarters)
+  }
+
+  // Add 1500 if it's valid and not already included
+  if (1500 >= 10 && 1500 <= max && !presets.includes(1500)) {
+    presets.push(1500)
+  }
+
+  return presets.sort((a, b) => a - b)
+})
 
 // Computed properties
 const canProceed = computed(() => {
@@ -198,6 +236,8 @@ const canProceed = computed(() => {
       return teamNames.value.slice(0, selectedTeams.value).every(name => name.trim())
     case 3:
       return winningPoints.value >= 100
+    case 4:
+      return obrigacaoPoints.value >= 10 && obrigacaoPoints.value <= winningPoints.value
     default:
       return false
   }
@@ -222,7 +262,16 @@ const nextStep = () => {
     store.teams = selectedTeams.value
     store.names = teamNames.value.slice(0, selectedTeams.value)
     store.winningPoints = winningPoints.value
+    store.obrigacaoPoints = obrigacaoPoints.value
     return
+  }
+
+  // Auto-set obrigação to half of winning points when moving from step 3 to 4
+  if (currentStep.value === 3) {
+    const suggestedObrigacao = Math.floor(winningPoints.value / 2)
+    if (suggestedObrigacao >= 10 && suggestedObrigacao <= winningPoints.value) {
+      obrigacaoPoints.value = suggestedObrigacao
+    }
   }
 
   slideDirection.value = 'slide-next'

@@ -1,7 +1,7 @@
 <template>
   <AppHeader></AppHeader>
   <AddTeams v-show="!hasGameStarted"></AddTeams>
-  <ListMatches v-show="hasGameStarted"></ListMatches>
+  <ListMatches v-show="hasGameStarted" class="pt-1"></ListMatches>
   <AddMatchButton v-show="hasGameStarted"></AddMatchButton>
   <main></main>
 </template>

@@ -27,11 +27,6 @@
           </div>
           <div class="text-sm text-gray-600">Rodada {{ roundNumber }}</div>
         </div>
-
-        <!-- Total round points -->
-        <div class="text-sm font-medium text-gray-700">
-          Total: {{ roundTotal }}
-        </div>
       </div>
 
       <!-- Team scores -->
@@ -108,10 +103,6 @@ const handleTouchEnd = () => {
     isSwipedLeft.value = false
   }
 }
-
-const roundTotal = computed(() => {
-  return props.round.reduce((sum, score) => sum + score, 0)
-})
 
 const gridClass = computed(() => {
   const teamCount = props.round.length
