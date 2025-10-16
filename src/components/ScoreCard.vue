@@ -65,12 +65,14 @@ interface Props {
   obrigacaoPoints?: number
   isWinner?: boolean
   layout?: 'horizontal' | 'vertical'
+  isLeading?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   obrigacaoPoints: 1500,
   isWinner: false,
   layout: 'vertical',
+  isLeading: false,
 })
 
 // Animate score changes
@@ -87,10 +89,6 @@ watch(
   },
 )
 
-const isLeading = computed(() => {
-  return props.score > 0 && !props.isWinner
-})
-
 const isInObrigacao = computed(() => {
   return props.score >= props.obrigacaoPoints && !props.isWinner
 })
@@ -106,7 +104,7 @@ const layoutClass = computed(() => {
 const scoreColorClass = computed(() => {
   if (props.isWinner) return 'text-green-600'
   if (isInObrigacao.value) return 'text-orange-600'
-  if (isLeading.value) return 'text-primary-600'
+  if (props.isLeading) return 'text-primary-600'
   return 'text-gray-900'
 })
 

@@ -52,30 +52,3 @@ const getScoreColor = (score: number) => {
   return 'text-gray-900'
 }
 </script>
-
-<style scoped>
-.glassmorphism {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.safe-top {
-  padding-top: env(safe-area-inset-top);
-}
-
-.animate-bounce-subtle {
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-</style>

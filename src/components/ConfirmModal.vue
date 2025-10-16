@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, watch, onUnmounted } from 'vue'
 
 interface Props {
   show?: boolean
@@ -109,17 +109,26 @@ const confirmButtonClass = computed(() => {
   }
 })
 
-// Prevent body scroll when modal is open
-watch(
+let previousOverflow: string | null = null
+
+const stop = watch(
   () => props.show,
   (isShown) => {
     if (isShown) {
+      previousOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = previousOverflow ?? ''
+      previousOverflow = null
     }
   },
 )
+
+onUnmounted(() => {
+  stop()
+  document.body.style.overflow = previousOverflow ?? ''
+  previousOverflow = null
+})
 </script>
 
 <style scoped>
