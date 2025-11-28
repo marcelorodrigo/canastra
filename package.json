@@ -24,7 +24,7 @@
     "@vueuse/gesture": "^2.0.0",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.5.0",
-    "tailwindcss": "^4.1.15",
+    "tailwindcss": "^4.1.17",
     "vue": "^3.5.22"
   },
   "devDependencies": {
