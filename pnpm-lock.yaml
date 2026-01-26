@@ -64,8 +64,8 @@ importers:
         specifier: ^9.39.2
         version: 9.39.2(jiti@2.6.1)
       eslint-plugin-playwright:
-        specifier: ^2.5.0
-        version: 2.5.0(eslint@9.39.2(jiti@2.6.1))
+        specifier: ^2.5.1
+        version: 2.5.1(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-vue:
         specifier: ~10.7.0
         version: 10.7.0(@typescript-eslint/parser@8.46.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(vue-eslint-parser@10.2.0(eslint@9.39.2(jiti@2.6.1)))
@@ -182,8 +182,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
 
-  '@babel/helper-define-polyfill-provider@0.6.5':
-    resolution: {integrity: sha512-uJnGFcPsWQK8fvjgGP5LZUZZsYGIoPeRjSF5PGwrelYgq7Q15/Ft9NGFp1zglwgIv//W0uG4BevRuSJRyylZPg==}
+  '@babel/helper-define-polyfill-provider@0.6.6':
+    resolution: {integrity: sha512-mOAsxeeKkUKayvZR3HeTYD/fICpCPLJrU5ZjelT/PA6WHtNDBOE436YiaEUvHN454bRM3CebhDsIpieCc4texA==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
@@ -1813,8 +1813,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  babel-plugin-polyfill-corejs2@0.4.14:
-    resolution: {integrity: sha512-Co2Y9wX854ts6U8gAAPXfn0GmAyctHuK8n0Yhfjd6t30g7yvKjspvvOo9yG+z52PZRgFErt7Ka2pYnXCjLKEpg==}
+  babel-plugin-polyfill-corejs2@0.4.15:
+    resolution: {integrity: sha512-hR3GwrRwHUfYwGfrisXPIDP3JcYfBrW7wKE7+Au6wDYl7fm/ka1NEII6kORzxNU556JjfidZeBsO10kYvtV1aw==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
@@ -1823,8 +1823,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
-  babel-plugin-polyfill-regenerator@0.6.5:
-    resolution: {integrity: sha512-ISqQ2frbiNU9vIJkzg7dlPpznPZ4jOiUQ1uSmB0fEHeowtN3COYRsXr/xexn64NpU13P06jc/L5TgiJXOgrbEg==}
+  babel-plugin-polyfill-regenerator@0.6.6:
+    resolution: {integrity: sha512-hYm+XLYRMvupxiQzrvXUj7YyvFFVfv5gI0R71AJzudg1g2AI2vyCPPIFEBjk162/wFzti3inBHo7isWFuEVS/A==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
@@ -2134,8 +2134,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-playwright@2.5.0:
-    resolution: {integrity: sha512-1ckFw7Abdz+l23wtw5Tg4GTK3Y+MgEQQNjEr7FTJP3wwmIOj8DkbJ6G655aPc09c0Kfn/NoGA4xpMZzeSO4NWw==}
+  eslint-plugin-playwright@2.5.1:
+    resolution: {integrity: sha512-q7oqVQTTfa3VXJQ8E+ln0QttPGrs/XmSO1FjOMzQYBMYF3btih4FIrhEYh34JF184GYDmq3lJ/n7CMa49OHBvA==}
     engines: {node: '>=16.9.0'}
     peerDependencies:
       eslint: '>=8.40.0'
@@ -3965,7 +3965,7 @@ snapshots:
       regexpu-core: 6.4.0
       semver: 6.3.1
 
-  '@babel/helper-define-polyfill-provider@0.6.5(@babel/core@7.28.6)':
+  '@babel/helper-define-polyfill-provider@0.6.6(@babel/core@7.28.6)':
     dependencies:
       '@babel/core': 7.28.6
       '@babel/helper-compilation-targets': 7.28.6
@@ -4588,9 +4588,9 @@ snapshots:
       '@babel/plugin-transform-unicode-regex': 7.27.1(@babel/core@7.28.6)
       '@babel/plugin-transform-unicode-sets-regex': 7.28.6(@babel/core@7.28.6)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.28.6)
-      babel-plugin-polyfill-corejs2: 0.4.14(@babel/core@7.28.6)
+      babel-plugin-polyfill-corejs2: 0.4.15(@babel/core@7.28.6)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.6)
-      babel-plugin-polyfill-regenerator: 0.6.5(@babel/core@7.28.6)
+      babel-plugin-polyfill-regenerator: 0.6.6(@babel/core@7.28.6)
       core-js-compat: 3.48.0
       semver: 6.3.1
     transitivePeerDependencies:
@@ -5680,11 +5680,11 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  babel-plugin-polyfill-corejs2@0.4.14(@babel/core@7.28.6):
+  babel-plugin-polyfill-corejs2@0.4.15(@babel/core@7.28.6):
     dependencies:
       '@babel/compat-data': 7.28.6
       '@babel/core': 7.28.6
-      '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.6)
+      '@babel/helper-define-polyfill-provider': 0.6.6(@babel/core@7.28.6)
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -5692,15 +5692,15 @@ snapshots:
   babel-plugin-polyfill-corejs3@0.13.0(@babel/core@7.28.6):
     dependencies:
       '@babel/core': 7.28.6
-      '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.6)
+      '@babel/helper-define-polyfill-provider': 0.6.6(@babel/core@7.28.6)
       core-js-compat: 3.48.0
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-polyfill-regenerator@0.6.5(@babel/core@7.28.6):
+  babel-plugin-polyfill-regenerator@0.6.6(@babel/core@7.28.6):
     dependencies:
       '@babel/core': 7.28.6
-      '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.6)
+      '@babel/helper-define-polyfill-provider': 0.6.6(@babel/core@7.28.6)
     transitivePeerDependencies:
       - supports-color
 
@@ -6082,7 +6082,7 @@ snapshots:
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
 
-  eslint-plugin-playwright@2.5.0(eslint@9.39.2(jiti@2.6.1)):
+  eslint-plugin-playwright@2.5.1(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
       globals: 16.5.0
