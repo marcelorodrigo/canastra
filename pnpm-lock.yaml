@@ -64,8 +64,8 @@ importers:
         specifier: ^10.0.2
         version: 10.0.2(jiti@2.6.1)
       eslint-plugin-playwright:
-        specifier: ^2.7.1
-        version: 2.7.1(eslint@10.0.2(jiti@2.6.1))
+        specifier: ^2.9.0
+        version: 2.9.0(eslint@10.0.2(jiti@2.6.1))
       eslint-plugin-vue:
         specifier: ~10.8.0
         version: 10.8.0(@typescript-eslint/parser@8.56.1(eslint@10.0.2(jiti@2.6.1))(typescript@5.9.3))(eslint@10.0.2(jiti@2.6.1))(vue-eslint-parser@10.4.0(eslint@10.0.2(jiti@2.6.1)))
@@ -2064,8 +2064,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-playwright@2.7.1:
-    resolution: {integrity: sha512-IGwSjYN6N5E0I+xbRpmLXXRKQfiRaEEGEasMWKmIoiLFe+izb81EKBMGSjD/NzlXrWGx/Ys7zDOkgYEHQT2g6Q==}
+  eslint-plugin-playwright@2.9.0:
+    resolution: {integrity: sha512-k3xrG6YzrallWNFMoGUjMNeu3SFFKXN79KJQBD2PkM4PasJegqV2Up+mPY5od2UmPKQGT+MeIhCmWH8r5eYuQQ==}
     engines: {node: '>=16.9.0'}
     peerDependencies:
       eslint: '>=8.40.0'
@@ -2281,8 +2281,8 @@ packages:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
-  globals@17.3.0:
-    resolution: {integrity: sha512-yMqGUQVVCkD4tqjOJf3TnrvaaHDMYp4VlUSObbkIiuCPe/ofdMBFIAcBbCSRFWOnos6qRiTVStDwqPLUclaxIw==}
+  globals@17.4.0:
+    resolution: {integrity: sha512-hjrNztw/VajQwOLsMNT1cbJiH2muO3OROCHnbehc8eY5JyD2gqz4AcMHPqgaOR59DjgUjYAYLeH699g/eWi2jw==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -5846,10 +5846,10 @@ snapshots:
     dependencies:
       eslint: 10.0.2(jiti@2.6.1)
 
-  eslint-plugin-playwright@2.7.1(eslint@10.0.2(jiti@2.6.1)):
+  eslint-plugin-playwright@2.9.0(eslint@10.0.2(jiti@2.6.1)):
     dependencies:
       eslint: 10.0.2(jiti@2.6.1)
-      globals: 17.3.0
+      globals: 17.4.0
 
   eslint-plugin-prettier@5.5.4(eslint-config-prettier@10.1.8(eslint@10.0.2(jiti@2.6.1)))(eslint@10.0.2(jiti@2.6.1))(prettier@3.8.1):
     dependencies:
@@ -6092,7 +6092,7 @@ snapshots:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  globals@17.3.0: {}
+  globals@17.4.0: {}
 
   globalthis@1.0.4:
     dependencies:
