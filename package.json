@@ -19,7 +19,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.2",
     "@vueuse/core": "^14.3.0",
     "@vueuse/gesture": "^2.0.0",
     "pinia": "^3.0.4",
