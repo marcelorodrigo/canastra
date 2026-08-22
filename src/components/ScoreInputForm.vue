@@ -72,14 +72,13 @@ const focusedInput = ref(-1)
 
 // Computed properties
 const totalScore = computed(() => {
-  return scores.value.reduce<number>(
-    (sum, score) => sum + (Number.isFinite(score) ? score! : 0),
-    0,
-  )
+  return scores.value.reduce<number>((sum, score) => sum + (Number.isFinite(score) ? score! : 0), 0)
 })
 
 const canSubmit = computed(() => {
-  return scores.value.length === store.teams && scores.value.every((score) => Number.isFinite(score))
+  return (
+    scores.value.length === store.teams && scores.value.every((score) => Number.isFinite(score))
+  )
 })
 
 const totalClass = computed(() => {
