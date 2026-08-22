@@ -116,4 +116,19 @@ describe('useAccessibleOverlay', () => {
     expect(onClose).not.toHaveBeenCalled()
     wrapper.unmount()
   })
+
+  it('keeps the scroll lock while a second overlay is open when the first unmounts', async () => {
+    const w1 = mountHarness({ closeFn: vi.fn() })
+    const w2 = mountHarness({ closeFn: vi.fn() })
+    await nextTick()
+    expect(document.body.style.overflow).toBe('hidden')
+
+    // Unmount the first overlay while the second remains open
+    w1.unmount()
+    expect(document.body.style.overflow).toBe('hidden')
+
+    // Only closing the still-open second overlay releases the lock
+    w2.unmount()
+    expect(document.body.style.overflow).toBe('')
+  })
 })

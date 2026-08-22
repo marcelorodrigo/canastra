@@ -33,6 +33,7 @@ export function useAccessibleOverlay(
 
   let previouslyFocused: HTMLElement | null = null
   let keydownHandler: ((e: KeyboardEvent) => void) | null = null
+  let isActive = false
 
   const focusFirst = () => {
     if (initialFocus?.value) {
@@ -74,6 +75,8 @@ export function useAccessibleOverlay(
   }
 
   const activate = () => {
+    if (isActive) return
+    isActive = true
     lock()
     overlayStack.push(onClose)
     previouslyFocused = (document.activeElement as HTMLElement | null) ?? null
@@ -83,6 +86,8 @@ export function useAccessibleOverlay(
   }
 
   const deactivate = () => {
+    if (!isActive) return
+    isActive = false
     const index = overlayStack.lastIndexOf(onClose)
     if (index !== -1) overlayStack.splice(index, 1)
     if (keydownHandler) {
