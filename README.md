@@ -26,7 +26,7 @@ A Progressive Web App (PWA) for tracking scores in Canastra card games. Built wi
 
 ## 📋 Requirements
 
-- Node.js v20.19.0 or v22.12.0+
+- Node.js v26.0.0+
 - pnpm (recommended package manager)
 
 ## 🚀 Getting Started
