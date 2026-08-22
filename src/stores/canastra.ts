@@ -94,6 +94,9 @@ export const useCanastraStore = defineStore(
     }
 
     function addRound(scores: number[]) {
+      if (teams.value < 2 || teams.value > 3) {
+        throw new InvalidRoundError('A valid two- or three-team game must be started first')
+      }
       if (!Array.isArray(scores) || scores.length !== teams.value) {
         throw new InvalidRoundError('Scores length must match the number of teams')
       }

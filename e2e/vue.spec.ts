@@ -12,6 +12,8 @@ test('user can start a game and add a round', async ({ page }) => {
 
   // Step 1: choose 2 teams
   await page.getByText('2 Equipes').click();
+  // Confirm the team-selection transition completed
+  await expect(page.getByRole('heading', { name: 'Nomes das Equipes' })).toBeVisible();
   // Step 2: names are pre-filled; proceed
   await page.getByRole('button', { name: 'Próximo' }).click();
   // Step 3: winning points; proceed

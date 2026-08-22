@@ -105,6 +105,15 @@ describe('canastra store', () => {
     })
   })
 
+  describe('addRound before startGame', () => {
+    it('rejects an empty round when no game has started', () => {
+      const store = useCanastraStore()
+      store.reset()
+      expect(() => store.addRound([])).toThrow(InvalidRoundError)
+      expect(store.rounds).toEqual([])
+    })
+  })
+
   describe('removeRound', () => {
     beforeEach(() => {
       const store = useCanastraStore()
