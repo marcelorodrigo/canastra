@@ -14,6 +14,9 @@
       <Transition name="slide-up">
         <div
           v-if="show"
+          ref="dialogRef"
+          v-bind="dialogAttrs"
+          tabindex="-1"
           class="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl max-h-[80vh] overflow-hidden safe-bottom"
         >
           <!-- Handle -->
@@ -24,12 +27,19 @@
           <!-- Header -->
           <div class="px-6 py-4 border-b border-gray-100">
             <div class="flex items-center justify-between">
-              <h2 class="text-xl font-semibold text-gray-900">{{ title }}</h2>
+              <h2 :id="titleId" class="text-xl font-semibold text-gray-900">{{ title }}</h2>
               <button
                 @click="$emit('close')"
+                aria-label="Fechar"
                 class="p-2 -mr-2 text-gray-400 hover:text-gray-600 transition-colors touch-manipulation"
               >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -52,7 +62,8 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { ref, toRef } from 'vue'
+import { useAccessibleOverlay } from '@/composables/useAccessibleOverlay'
 
 interface Props {
   show?: boolean
@@ -63,21 +74,16 @@ const props = withDefaults(defineProps<Props>(), {
   show: true,
 })
 
-defineEmits<{
+const emit = defineEmits<{
   close: []
 }>()
 
-// Prevent body scroll when modal is open
-watch(
-  () => props.show,
-  (isShown) => {
-    if (isShown) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-  },
-)
+const dialogRef = ref<HTMLElement | null>(null)
+
+const { dialogAttrs, titleId } = useAccessibleOverlay(dialogRef, {
+  isOpen: toRef(props, 'show'),
+  onClose: () => emit('close'),
+})
 </script>
 
 <style scoped>

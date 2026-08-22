@@ -83,4 +83,12 @@ describe('RoundCard', () => {
 
     expect(swipeLeftClasses(wrapper)).toBe(false)
   })
+
+  it('gives the delete button an accessible name and marks its icon decorative', () => {
+    const wrapper = mount(RoundCard, { props: { ...baseProps } })
+    const deleteButton = wrapper.find('button')
+
+    expect(deleteButton.attributes('aria-label')).toBe('Remover rodada')
+    expect(deleteButton.find('svg').attributes('aria-hidden')).toBe('true')
+  })
 })
