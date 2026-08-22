@@ -126,7 +126,7 @@ const closeDeleteModal = () => {
 }
 
 const addScore = (scores: number[]) => {
-  store.addScore(scores)
+  store.addRound(scores)
   closeScoreSheet()
 }
 

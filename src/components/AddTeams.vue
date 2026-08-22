@@ -258,10 +258,12 @@ const nextStep = () => {
 
   if (currentStep.value === totalSteps) {
     // Start game
-    store.teams = selectedTeams.value
-    store.names = teamNames.value.slice(0, selectedTeams.value)
-    store.winningPoints = winningPoints.value
-    store.obrigacaoPoints = obrigacaoPoints.value
+    store.startGame({
+      teams: selectedTeams.value,
+      names: teamNames.value.slice(0, selectedTeams.value),
+      winningPoints: winningPoints.value,
+      obrigacaoPoints: obrigacaoPoints.value,
+    })
     return
   }
 
