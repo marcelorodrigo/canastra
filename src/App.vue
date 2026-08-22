@@ -1,9 +1,12 @@
 <template>
   <AppHeader></AppHeader>
-  <AddTeams v-show="!hasGameStarted"></AddTeams>
-  <ListMatches v-show="hasGameStarted" class="pt-1"></ListMatches>
-  <AddMatchButton v-show="hasGameStarted"></AddMatchButton>
-  <main></main>
+  <main>
+    <AddTeams v-if="!hasGameStarted"></AddTeams>
+    <template v-else>
+      <ListMatches class="pt-1"></ListMatches>
+      <AddMatchButton></AddMatchButton>
+    </template>
+  </main>
 </template>
 
 <script setup lang="ts">
