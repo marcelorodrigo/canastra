@@ -15,6 +15,7 @@
       <Transition name="fab-actions">
         <div
           v-if="isExpanded"
+          :id="menuId"
           class="absolute bottom-16 right-0 w-[50vw] min-w-[200px] max-w-md space-y-3"
         >
           <ActionButton icon="➕" label="Adicionar Pontos" color="green" @click="openScoreSheet" />
@@ -26,6 +27,9 @@
       <!-- Main FAB -->
       <button
         @click="toggleMenu"
+        :aria-label="isExpanded ? 'Fechar menu' : 'Abrir menu'"
+        :aria-expanded="isExpanded"
+        :aria-controls="menuId"
         class="w-14 h-14 rounded-full gradient-primary shadow-lg flex items-center justify-center text-white text-xl touch-manipulation transform transition-all duration-300 hover:scale-110 active:scale-95"
         :class="{ 'rotate-45': isExpanded }"
       >
@@ -70,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useId } from 'vue'
 import { useCanastraStore } from '@/stores/canastra'
 import BottomSheet from './BottomSheet.vue'
 import ConfirmModal from './ConfirmModal.vue'
@@ -84,6 +88,7 @@ const isExpanded = ref(false)
 const showScoreSheet = ref(false)
 const showRevancheModal = ref(false)
 const showDeleteModal = ref(false)
+const menuId = useId()
 
 // Methods
 const toggleMenu = () => {

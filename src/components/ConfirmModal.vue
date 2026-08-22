@@ -12,6 +12,9 @@
           <Transition name="modal">
             <div
               v-if="show"
+              ref="dialogRef"
+              v-bind="dialogAttrs"
+              tabindex="-1"
               class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6"
               @click.stop
             >
@@ -26,7 +29,7 @@
               </div>
 
               <!-- Title -->
-              <h3 class="text-lg font-semibold text-gray-900 text-center mb-2">
+              <h3 :id="titleId" class="text-lg font-semibold text-gray-900 text-center mb-2">
                 {{ title }}
               </h3>
 
@@ -60,7 +63,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onUnmounted } from 'vue'
+import { computed, ref, toRef } from 'vue'
+import { useAccessibleOverlay } from '@/composables/useAccessibleOverlay'
 
 interface Props {
   show?: boolean
@@ -80,10 +84,17 @@ const props = withDefaults(defineProps<Props>(), {
   icon: '❓',
 })
 
-defineEmits<{
+const emit = defineEmits<{
   confirm: []
   cancel: []
 }>()
+
+const dialogRef = ref<HTMLElement | null>(null)
+
+const { dialogAttrs, titleId } = useAccessibleOverlay(dialogRef, {
+  isOpen: toRef(props, 'show'),
+  onClose: () => emit('cancel'),
+})
 
 const iconClass = computed(() => {
   const baseClass = 'text-white'
@@ -107,27 +118,6 @@ const confirmButtonClass = computed(() => {
     default:
       return `${baseClass} gradient-primary`
   }
-})
-
-let previousOverflow: string | null = null
-
-const stop = watch(
-  () => props.show,
-  (isShown) => {
-    if (isShown) {
-      previousOverflow = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = previousOverflow ?? ''
-      previousOverflow = null
-    }
-  },
-)
-
-onUnmounted(() => {
-  stop()
-  document.body.style.overflow = previousOverflow ?? ''
-  previousOverflow = null
 })
 </script>
 

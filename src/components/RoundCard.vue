@@ -12,7 +12,13 @@
       v-if="isSwipedLeft"
       class="absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500"
     >
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg
+        aria-hidden="true"
+        class="w-6 h-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -53,9 +59,16 @@
       <!-- Delete button (always visible for now) -->
       <button
         @click="$emit('delete')"
+        aria-label="Remover rodada"
         class="absolute top-4 right-4 p-2 text-gray-400 hover:text-red-500 transition-colors touch-manipulation"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"

@@ -22,7 +22,7 @@ test('user can start a game and add a round', async ({ page }) => {
   await page.getByRole('button', { name: 'Iniciar Jogo' }).click();
 
   // Open the score sheet from the FAB menu
-  await page.getByRole('button', { name: '+' }).click();
+  await page.getByRole('button', { name: 'Abrir menu' }).click();
   await page.getByRole('button', { name: 'Adicionar Pontos' }).click();
 
   // Fill the two score inputs and submit
@@ -33,5 +33,34 @@ test('user can start a game and add a round', async ({ page }) => {
 
   // Round history should reflect the added round
   await expect(page.getByText('1 rodada')).toBeVisible();
+});
+
+test('overlay exposes dialog semantics and closes on Escape with focus restored', async ({ page }) => {
+  await page.goto('/');
+
+  // Start a game so the FAB is available
+  await page.getByText('2 Equipes').click();
+  await expect(page.getByRole('heading', { name: 'Nomes das Equipes' })).toBeVisible();
+  await page.getByRole('button', { name: 'Próximo' }).click();
+  await page.getByRole('button', { name: 'Próximo' }).click();
+  await page.getByRole('button', { name: 'Iniciar Jogo' }).click();
+
+  const fab = page.locator('button[aria-controls]');
+  await fab.focus();
+  await page.keyboard.press('Enter');
+
+  const deleteAll = page.getByRole('button', { name: 'Apagar Tudo' });
+  await expect(deleteAll).toBeVisible();
+  await deleteAll.focus();
+  await page.keyboard.press('Enter');
+
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toHaveAttribute('aria-modal', 'true');
+  await expect(dialog).toContainFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(deleteAll).toBeFocused();
 });
 
