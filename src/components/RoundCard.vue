@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onUnmounted } from 'vue'
 
 interface Props {
   round: number[]
@@ -87,12 +87,14 @@ const cardRef = ref<HTMLElement>()
 const isSwipedLeft = ref(false)
 const touchStartX = ref(0)
 const touchEndX = ref(0)
+let resetSwipeTimer: ReturnType<typeof setTimeout> | null = null
 
 // Native touch event handlers for swipe gesture
 const handleTouchStart = (e: TouchEvent) => {
   const touch = e.changedTouches[0]
   if (!touch) return
   touchStartX.value = touch.screenX
+  touchEndX.value = touch.screenX
 }
 
 const handleTouchMove = (e: TouchEvent) => {
@@ -108,14 +110,29 @@ const handleTouchEnd = () => {
   if (swipeDistance > minSwipeDistance) {
     // Swipe left - show delete action
     isSwipedLeft.value = true
-    setTimeout(() => {
+    if (resetSwipeTimer !== null) {
+      clearTimeout(resetSwipeTimer)
+    }
+    resetSwipeTimer = setTimeout(() => {
+      resetSwipeTimer = null
       isSwipedLeft.value = false
     }, 2000)
   } else if (swipeDistance < -minSwipeDistance) {
     // Swipe right - hide delete action
     isSwipedLeft.value = false
+    if (resetSwipeTimer !== null) {
+      clearTimeout(resetSwipeTimer)
+      resetSwipeTimer = null
+    }
   }
 }
+
+onUnmounted(() => {
+  if (resetSwipeTimer !== null) {
+    clearTimeout(resetSwipeTimer)
+    resetSwipeTimer = null
+  }
+})
 
 const gridClass = computed(() => {
   const teamCount = props.round.length

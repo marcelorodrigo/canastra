@@ -163,7 +163,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 import { useCanastraStore } from '@/stores/canastra'
 
 const store = useCanastraStore()
@@ -174,6 +174,8 @@ const totalSteps = 4
 const slideDirection = ref('slide-next')
 const attemptedNext = ref(false)
 const focusedInput = ref(-1)
+
+let autoAdvanceTimer: ReturnType<typeof setTimeout> | null = null
 
 // Form data
 const selectedTeams = ref(2)
@@ -245,10 +247,21 @@ const canProceed = computed(() => {
 // Methods
 const selectTeamCount = (count: number) => {
   selectedTeams.value = count
-  setTimeout(() => {
+  if (autoAdvanceTimer !== null) {
+    clearTimeout(autoAdvanceTimer)
+  }
+  autoAdvanceTimer = setTimeout(() => {
+    autoAdvanceTimer = null
     nextStep()
   }, 300)
 }
+
+onUnmounted(() => {
+  if (autoAdvanceTimer !== null) {
+    clearTimeout(autoAdvanceTimer)
+    autoAdvanceTimer = null
+  }
+})
 
 const nextStep = () => {
   if (!canProceed.value) {

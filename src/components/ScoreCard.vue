@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 touch-manipulation"
+    class="flex gap-4 bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 touch-manipulation"
     :class="[
       layoutClass,
       { 'ring-2 ring-green-500 bg-green-50': isWinner },
@@ -40,7 +40,7 @@
     </div>
 
     <!-- Progress bar -->
-    <div class="mt-4">
+    <div>
       <div class="w-full bg-gray-200 rounded-full h-2">
         <div
           class="h-2 rounded-full transition-all duration-500 ease-out"
