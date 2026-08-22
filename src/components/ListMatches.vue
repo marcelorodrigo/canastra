@@ -3,26 +3,28 @@
     <!-- Score summary cards -->
     <div class="grid grid-cols-2 gap-4 mb-6" v-if="store.teams === 2">
       <ScoreCard
-        v-for="(total, index) in store.totals"
+        v-for="(view, index) in teamViews"
         :key="index"
-        :teamName="store.names[index] ?? ''"
-        :score="total"
-        :isWinner="isWinner(total)"
-        :winningPoints="store.winningPoints"
-        :obrigacaoPoints="store.obrigacaoPoints"
+        :teamName="view.name"
+        :score="view.score"
+        :isWinner="view.isWinner"
+        :isLeading="view.isLeading"
+        :isInObrigacao="view.isInObrigacao"
+        :progressPercentage="view.progressPercentage"
       />
     </div>
 
     <!-- Multi-team layout for 3+ teams -->
     <div v-else class="space-y-3 mb-6">
       <ScoreCard
-        v-for="(total, index) in store.totals"
+        v-for="(view, index) in teamViews"
         :key="index"
-        :teamName="store.names[index] ?? ''"
-        :score="total"
-        :isWinner="isWinner(total)"
-        :winningPoints="store.winningPoints"
-        :obrigacaoPoints="store.obrigacaoPoints"
+        :teamName="view.name"
+        :score="view.score"
+        :isWinner="view.isWinner"
+        :isLeading="view.isLeading"
+        :isInObrigacao="view.isInObrigacao"
+        :progressPercentage="view.progressPercentage"
         layout="horizontal"
       />
     </div>
@@ -75,9 +77,16 @@ import ConfirmModal from './ConfirmModal.vue'
 const store = useCanastraStore()
 const deleteIndex = ref<number | null>(null)
 
-const isWinner = (score: number) => {
-  return score >= store.winningPoints
-}
+const teamViews = computed(() =>
+  store.totals.map((score, index) => ({
+    name: store.names[index] ?? '',
+    score,
+    isWinner: store.isWinner(index),
+    isLeading: store.isLeading(index),
+    isInObrigacao: store.isInObrigacao(index),
+    progressPercentage: store.progressFor(index),
+  })),
+)
 
 const confirmDelete = (index: number) => {
   deleteIndex.value = index

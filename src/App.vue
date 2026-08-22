@@ -17,6 +17,6 @@ import ListMatches from './components/ListMatches.vue'
 const scores = useCanastraStore()
 
 const hasGameStarted = computed(() => {
-  return scores.teams > 0
+  return scores.hasActiveGame
 })
 </script>

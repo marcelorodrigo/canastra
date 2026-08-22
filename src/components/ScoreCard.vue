@@ -35,9 +35,7 @@
         <div class="text-3xl font-bold" :class="scoreColorClass">
           {{ animatedScore }}
         </div>
-        <div class="text-sm text-gray-500">
-          {{ Math.ceil((score / winningPoints) * 100) }}% da meta
-        </div>
+        <div class="text-sm text-gray-500">{{ Math.round(progressPercentage) }}% da meta</div>
       </div>
     </div>
 
@@ -47,7 +45,7 @@
         <div
           class="h-2 rounded-full transition-all duration-500 ease-out"
           :class="progressBarClass"
-          :style="{ width: `${Math.min(progressPercentage, 100)}%` }"
+          :style="{ width: `${progressPercentage}%` }"
         ></div>
       </div>
     </div>
@@ -61,18 +59,18 @@ import { useTransition } from '@vueuse/core'
 interface Props {
   teamName: string
   score: number
-  winningPoints: number
-  obrigacaoPoints?: number
+  progressPercentage: number
   isWinner?: boolean
   layout?: 'horizontal' | 'vertical'
   isLeading?: boolean
+  isInObrigacao?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  obrigacaoPoints: 1500,
   isWinner: false,
   layout: 'vertical',
   isLeading: false,
+  isInObrigacao: false,
 })
 
 // Animate score changes
@@ -89,30 +87,22 @@ watch(
   },
 )
 
-const isInObrigacao = computed(() => {
-  return props.score >= props.obrigacaoPoints && !props.isWinner
-})
-
-const progressPercentage = computed(() => {
-  return Math.min((props.score / props.winningPoints) * 100, 100)
-})
-
 const layoutClass = computed(() => {
   return props.layout === 'horizontal' ? 'flex-row' : 'flex-col'
 })
 
 const scoreColorClass = computed(() => {
   if (props.isWinner) return 'text-green-600'
-  if (isInObrigacao.value) return 'text-orange-600'
+  if (props.isInObrigacao) return 'text-orange-600'
   if (props.isLeading) return 'text-primary-600'
   return 'text-gray-900'
 })
 
 const progressBarClass = computed(() => {
   if (props.isWinner) return 'bg-green-500'
-  if (isInObrigacao.value) return 'bg-orange-500'
-  if (progressPercentage.value >= 80) return 'bg-accent-500'
-  if (progressPercentage.value >= 50) return 'bg-primary-400'
+  if (props.isInObrigacao) return 'bg-orange-500'
+  if (props.progressPercentage >= 80) return 'bg-accent-500'
+  if (props.progressPercentage >= 50) return 'bg-primary-400'
   return 'bg-primary-300'
 })
 </script>

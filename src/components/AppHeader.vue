@@ -21,7 +21,7 @@
         <div v-if="hasActiveGame" class="flex space-x-2">
           <div v-for="(total, index) in store.totals" :key="index" class="text-center">
             <div class="text-xs font-medium text-gray-600">{{ store.names[index] }}</div>
-            <div class="text-sm font-bold" :class="getScoreColor(total)">{{ total }}</div>
+            <div class="text-sm font-bold" :class="getScoreColor(index)">{{ total }}</div>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@ import { useCanastraStore } from '@/stores/canastra'
 
 const store = useCanastraStore()
 
-const hasActiveGame = computed(() => store.teams > 0)
+const hasActiveGame = computed(() => store.hasActiveGame)
 
 const gameStatus = computed(() => {
   const totalRounds = store.rounds.length
@@ -43,12 +43,9 @@ const gameStatus = computed(() => {
   return `${totalRounds} rodada${totalRounds !== 1 ? 's' : ''}`
 })
 
-const getScoreColor = (score: number) => {
-  const isWinning = score >= store.winningPoints
-  const isLeading = score === Math.max(...store.totals)
-
-  if (isWinning) return 'text-green-600'
-  if (isLeading && store.totals.filter((t) => t === score).length === 1) return 'text-primary-600'
+const getScoreColor = (index: number) => {
+  if (store.isWinner(index)) return 'text-green-600'
+  if (store.isLeading(index)) return 'text-primary-600'
   return 'text-gray-900'
 }
 </script>

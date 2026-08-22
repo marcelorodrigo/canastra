@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import {
+  computeHasTieAtTop,
+  computeProgress,
+  computeIsInObrigacao,
+  computeLeaderIndices,
+  computeWinnerIndices,
+} from './gameRules'
 
 export interface GameConfig {
   teams: number
@@ -50,6 +57,32 @@ export const useCanastraStore = defineStore(
       }
       return totalsArray
     })
+
+    const hasActiveGame = computed((): boolean => teams.value > 0)
+
+    const leaderIndices = computed((): number[] => computeLeaderIndices(totals.value))
+
+    const winnerIndices = computed((): number[] =>
+      computeWinnerIndices(totals.value, winningPoints.value),
+    )
+
+    const hasTieAtTop = computed((): boolean => computeHasTieAtTop(totals.value))
+
+    function isWinner(index: number): boolean {
+      return winnerIndices.value.includes(index)
+    }
+
+    function isLeading(index: number): boolean {
+      return leaderIndices.value.length === 1 && leaderIndices.value[0] === index
+    }
+
+    function isInObrigacao(index: number): boolean {
+      return computeIsInObrigacao(totals.value[index], obrigacaoPoints.value, winningPoints.value)
+    }
+
+    function progressFor(index: number): number {
+      return computeProgress(totals.value[index], winningPoints.value)
+    }
 
     // Actions
     function reset() {
@@ -120,6 +153,14 @@ export const useCanastraStore = defineStore(
       winningPoints,
       obrigacaoPoints,
       totals,
+      hasActiveGame,
+      leaderIndices,
+      winnerIndices,
+      hasTieAtTop,
+      isWinner,
+      isLeading,
+      isInObrigacao,
+      progressFor,
       reset,
       revanche,
       startGame,

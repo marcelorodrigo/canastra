@@ -153,11 +153,70 @@ describe('canastra store', () => {
 
     it('reset returns the store to its defaults', () => {
       const store = useCanastraStore()
-      store.startGame({ teams: 3, names: ['A', 'B', 'C'], winningPoints: 2500, obrigacaoPoints: 1000 })
+      store.startGame({
+        teams: 3,
+        names: ['A', 'B', 'C'],
+        winningPoints: 2500,
+        obrigacaoPoints: 1000,
+      })
       store.reset()
       expect(store.teams).toBe(0)
       expect(store.winningPoints).toBe(3000)
       expect(store.obrigacaoPoints).toBe(1500)
+    })
+  })
+
+  describe('game rules getters', () => {
+    it('hasActiveGame is false before a game starts and true after', () => {
+      const store = useCanastraStore()
+      expect(store.hasActiveGame).toBe(false)
+      store.startGame({ ...validConfig })
+      expect(store.hasActiveGame).toBe(true)
+    })
+
+    it('derives winners, leaders and obrigação from totals', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([3200, 2000])
+
+      expect(store.isWinner(0)).toBe(true)
+      expect(store.isWinner(1)).toBe(false)
+      expect(store.isLeading(0)).toBe(true)
+      expect(store.isLeading(1)).toBe(false)
+      expect(store.isInObrigacao(0)).toBe(false)
+      expect(store.isInObrigacao(1)).toBe(true)
+      expect(store.winnerIndices).toEqual([0])
+      expect(store.hasTieAtTop).toBe(false)
+    })
+
+    it('marks a tie at the top above threshold as no winner and a tie', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([3200, 3200])
+
+      expect(store.winnerIndices).toEqual([])
+      expect(store.hasTieAtTop).toBe(true)
+      expect(store.isLeading(0)).toBe(false)
+      expect(store.isLeading(1)).toBe(false)
+    })
+
+    it('reports a unique leader below threshold with no winner', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([1000, 500])
+
+      expect(store.isLeading(0)).toBe(true)
+      expect(store.isWinner(0)).toBe(false)
+      expect(store.winnerIndices).toEqual([])
+    })
+
+    it('clamps progress to [0, 100] and guards invalid thresholds', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([-500, 4500])
+
+      expect(store.progressFor(0)).toBe(0)
+      expect(store.progressFor(1)).toBe(100)
     })
   })
 })
