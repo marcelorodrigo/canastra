@@ -29,10 +29,10 @@ test('user can start a game and add a round', async ({ page }) => {
   const inputs = page.locator('input[type="number"]');
   await inputs.nth(0).fill('100');
   await inputs.nth(1).fill('200');
-  await page.getByRole('button', { name: 'Adicionar Pontos' }).click();
+  await page.getByRole('button', { name: 'Adicionar Pontos', exact: true }).click();
 
   // Round history should reflect the added round
-  await expect(page.getByText('1 rodada')).toBeVisible();
+  await expect(page.getByText('1 rodada', { exact: true })).toBeVisible();
 });
 
 test('overlay exposes dialog semantics and closes on Escape with focus restored', async ({ page }) => {
@@ -57,7 +57,7 @@ test('overlay exposes dialog semantics and closes on Escape with focus restored'
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveAttribute('aria-modal', 'true');
-  await expect(dialog).toContainFocused();
+  await expect(dialog.locator(':focus')).toHaveCount(1);
 
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
