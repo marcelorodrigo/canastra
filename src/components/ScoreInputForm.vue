@@ -67,16 +67,19 @@ const emit = defineEmits<{
 }>()
 
 // Form state
-const scores = ref<number[]>(new Array(store.teams).fill(0))
+const scores = ref<(number | null)[]>(new Array(store.teams).fill(null))
 const focusedInput = ref(-1)
 
 // Computed properties
 const totalScore = computed(() => {
-  return scores.value.reduce((sum, score) => sum + (score || 0), 0)
+  return scores.value.reduce<number>(
+    (sum, score) => sum + (Number.isFinite(score) ? score! : 0),
+    0,
+  )
 })
 
 const canSubmit = computed(() => {
-  return scores.value.some((score) => score !== 0)
+  return scores.value.length === store.teams && scores.value.every((score) => Number.isFinite(score))
 })
 
 const totalClass = computed(() => {
@@ -98,9 +101,10 @@ const getInputClass = (index: number) => {
 
 const submitScore = () => {
   if (canSubmit.value) {
-    emit('submit', [...scores.value])
+    const normalized = scores.value.map((score) => (Number.isFinite(score) ? score! : 0))
+    emit('submit', normalized)
     // Reset form
-    scores.value = new Array(store.teams).fill(0)
+    scores.value = new Array(store.teams).fill(null)
   }
 }
 </script>

@@ -85,7 +85,7 @@ const confirmDelete = (index: number) => {
 
 const deleteRound = () => {
   if (deleteIndex.value !== null) {
-    store.removeScore(deleteIndex.value)
+    store.removeRound(deleteIndex.value)
     deleteIndex.value = null
   }
 }

@@ -1,6 +1,34 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
+export interface GameConfig {
+  teams: number
+  names: string[]
+  winningPoints: number
+  obrigacaoPoints: number
+}
+
+export class InvalidGameConfigError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'InvalidGameConfigError'
+  }
+}
+
+export class InvalidRoundError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'InvalidRoundError'
+  }
+}
+
+export class InvalidRoundIndexError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'InvalidRoundIndexError'
+  }
+}
+
 export const useCanastraStore = defineStore(
   'scores',
   () => {
@@ -36,16 +64,50 @@ export const useCanastraStore = defineStore(
       rounds.value = []
     }
 
-    function addScore(scores: number[]) {
-      if (!scores || scores.length !== teams.value) {
-        console.error('Scores provided do not match teams playing')
-        return
+    function startGame(config: GameConfig) {
+      if (!Number.isInteger(config.teams) || config.teams < 2 || config.teams > 3) {
+        throw new InvalidGameConfigError('Teams must be an integer between 2 and 3')
       }
-      rounds.value.push(scores)
+      if (!Array.isArray(config.names) || config.names.length !== config.teams) {
+        throw new InvalidGameConfigError('Names length must match the number of teams')
+      }
+      if (!config.names.every((name) => typeof name === 'string' && name.trim().length > 0)) {
+        throw new InvalidGameConfigError('Every team name must be a non-empty string')
+      }
+      if (!Number.isFinite(config.winningPoints) || config.winningPoints < 100) {
+        throw new InvalidGameConfigError('Winning points must be a finite number >= 100')
+      }
+      if (
+        !Number.isFinite(config.obrigacaoPoints) ||
+        config.obrigacaoPoints <= 0 ||
+        config.obrigacaoPoints > config.winningPoints
+      ) {
+        throw new InvalidGameConfigError(
+          'Obrigação points must be finite, greater than 0 and not above winning points',
+        )
+      }
+
+      teams.value = config.teams
+      names.value = [...config.names]
+      winningPoints.value = config.winningPoints
+      obrigacaoPoints.value = config.obrigacaoPoints
     }
 
-    function removeScore(row: number) {
-      rounds.value.splice(row, 1)
+    function addRound(scores: number[]) {
+      if (!Array.isArray(scores) || scores.length !== teams.value) {
+        throw new InvalidRoundError('Scores length must match the number of teams')
+      }
+      if (!scores.every((score) => Number.isFinite(score))) {
+        throw new InvalidRoundError('Every score must be a finite number')
+      }
+      rounds.value.push([...scores])
+    }
+
+    function removeRound(index: number) {
+      if (!Number.isInteger(index) || index < 0 || index >= rounds.value.length) {
+        throw new InvalidRoundIndexError('Round index is out of range')
+      }
+      rounds.value.splice(index, 1)
     }
 
     return {
@@ -57,8 +119,9 @@ export const useCanastraStore = defineStore(
       totals,
       reset,
       revanche,
-      addScore,
-      removeScore,
+      startGame,
+      addRound,
+      removeRound,
     }
   },
   {
