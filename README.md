@@ -2,120 +2,31 @@
 
 A Progressive Web App (PWA) for tracking scores in Canastra card games. Built with Vue 3, TypeScript, and Tailwind CSS, this app helps players keep track of points across multiple rounds with an intuitive, mobile-friendly interface.
 
-## 🎯 Features
+## 🎯 Funcionalidades
 
-- **Multi-team support**: Track scores for 2 or 3 teams
-- **Persistent storage**: Game state is automatically saved locally
-- **Score tracking**: Add, view, and remove scores for each round
-- **Win conditions**: Automatic detection when a team reaches the winning points (default: 3000)
-- **Obrigação tracking**: Visual indicators when teams reach the obrigação threshold (default: 1500)
-- **Game management**: Start new games or play a rematch
-- **Progressive Web App**: Install on your device and use offline
-- **Responsive design**: Optimized for mobile and tablet devices
+### Configuração de jogo
+- **Assistente de configuração em 4 passos**: escolha do número de equipes, nomes, pontos de vitória e pontos de obrigação, com transições animadas e validação por etapa
+- **Suporte a 2 ou 3 equipes** com nomes personalizáveis
+- **Pontos de vitória configuráveis** (presets de 100/1500/2500/3000, padrão 3000)
+- **Limite de obrigação configurável** (presets dinâmicos derivados da meta de vitória, padrão 1500)
 
-## 🛠️ Tech Stack
+### Pontuação e histórico
+- **Registro de pontos por rodada** via bottom sheet, com indicadores de pontos positivos/negativos e total da rodada
+- **Histórico de rodadas** em ordem da mais recente para a mais antiga, com contagem total
+- **Remoção de rodada** por swipe-to-delete ou botão, sempre com confirmação
 
-- **Framework**: Vue 3 with Composition API and `<script setup>`
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **State Management**: Pinia with persistence plugin
-- **Build Tool**: Vite
-- **PWA Support**: vite-plugin-pwa
-- **Testing**: Vitest (unit)
-- **Utilities**: VueUse
+### Visualização e status
+- **Detecção automática de vencedor** (👑) quando um único líder atinge a meta de pontos
+- **Indicador de obrigação**: badge "Obrigação" exibido quando a equipe está entre o limite de obrigação e a vitória
+- **Indicador de líder** ("Liderando") e **detecção de empate** no topo
+- **Barras de progresso** e contadores animados mostrando a porcentagem da meta por equipe
 
-## 📋 Requirements
+### Gerenciamento de jogo
+- **Revanche**: zera o placar mantendo as mesmas equipes e configurações
+- **Apagar tudo**: reseta o jogo e retorna à tela inicial
+- **Persistência local**: o estado do jogo é salvo automaticamente no dispositivo
 
-- Node.js v26.0.0+
-- pnpm (recommended package manager)
-
-## 🚀 Getting Started
-
-### Installation
-
-```sh
-pnpm install
-```
-
-### Development
-
-Run the development server with hot-reload:
-
-```sh
-pnpm dev
-```
-
-### Production Build
-
-Type-check, compile and minify for production:
-
-```sh
-pnpm build
-```
-
-Preview the production build:
-
-```sh
-pnpm preview
-```
-
-## 🧪 Testing
-
-### Unit Tests
-
-Run unit tests with [Vitest](https://vitest.dev/):
-
-```sh
-pnpm test:unit
-```
-
-## 🔧 Development Tools
-
-### Linting
-
-Lint and fix code with [ESLint](https://eslint.org/):
-
-```sh
-pnpm lint
-```
-
-### Code Formatting
-
-Format code with Prettier:
-
-```sh
-pnpm format
-```
-
-### Type Checking
-
-Run TypeScript type checking:
-
-```sh
-pnpm type-check
-```
-
-## 💻 Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension
-- Disable Vetur if you have it installed (conflicts with Vue Official)
-
-## 🌐 Browser Extensions (Recommended)
-
-### Chromium-based browsers (Chrome, Edge, Brave, etc.)
-- [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-- [Enable Custom Object Formatters](http://bit.ly/object-formatters) in DevTools
-
-### Firefox
-- [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-- [Enable Custom Object Formatters](https://fxdx.dev/firefox-devtools-custom-object-formatters/) in DevTools
-
-## 📱 PWA Installation
-
-Once deployed, users can install the app on their devices:
-- **Mobile**: Tap the "Add to Home Screen" option in your browser
-- **Desktop**: Look for the install icon in the address bar
-
-## 📄 License
-
-See [LICENSE](LICENSE) file for details.
+### Técnico
+- **Progressive Web App**: instalável e utilizável offline
+- **Design responsivo e mobile-first**: menu flutuante (FAB), gestos de swipe e bottom sheet
+- **Acessibilidade**: overlays acessíveis, atributos ARIA e bloqueio de rolagem da página ao fundo
