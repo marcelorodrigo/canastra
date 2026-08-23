@@ -46,4 +46,46 @@ describe('ScoreInputForm', () => {
     const submit = wrapper.find('button')
     expect((submit.element as HTMLButtonElement).disabled).toBe(true)
   })
+
+  it('emits cancel when the cancel button is clicked', async () => {
+    const wrapper = mount(ScoreInputForm)
+    const cancel = wrapper.findAll('button').find((b) => (b.text() ?? '').includes('Cancelar'))
+    expect(cancel).toBeDefined()
+    await cancel!.trigger('click')
+
+    expect(wrapper.emitted('cancel')).toBeTruthy()
+  })
+
+  it('preserves negative scores when submitting', async () => {
+    const wrapper = mount(ScoreInputForm)
+    const inputs = wrapper.findAll('input')
+    await inputs[0].setValue(-100)
+    await inputs[1].setValue(50)
+
+    const submit = wrapper.find('button')
+    expect((submit.element as HTMLButtonElement).disabled).toBe(false)
+
+    await submit.trigger('click')
+
+    expect(wrapper.emitted('submit')![0]).toEqual([[-100, 50]])
+  })
+
+  it('renders the round total in green for positive and red for negative', async () => {
+    const wrapper = mount(ScoreInputForm)
+    const inputs = wrapper.findAll('input')
+    const totalEl = () =>
+      wrapper
+        .findAll('span')
+        .find((s) => s.classes().includes('text-lg') && s.classes().includes('font-bold'))!
+
+    await inputs[0].setValue(100)
+    await inputs[1].setValue(50)
+    expect(totalEl().classes()).toContain('text-green-600')
+    expect(totalEl().text()).toBe('+150')
+
+    await inputs[0].setValue(-100)
+    await inputs[1].setValue(50)
+    expect(totalEl().classes()).toContain('text-red-600')
+    expect(totalEl().text()).toBe('-50')
+  })
 })

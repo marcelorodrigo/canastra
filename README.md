@@ -21,7 +21,7 @@ A Progressive Web App (PWA) for tracking scores in Canastra card games. Built wi
 - **State Management**: Pinia with persistence plugin
 - **Build Tool**: Vite
 - **PWA Support**: vite-plugin-pwa
-- **Testing**: Vitest (unit) and Playwright (e2e)
+- **Testing**: Vitest (unit)
 - **Utilities**: VueUse
 
 ## 📋 Requirements
@@ -67,30 +67,6 @@ Run unit tests with [Vitest](https://vitest.dev/):
 
 ```sh
 pnpm test:unit
-```
-
-### End-to-End Tests
-
-Run E2E tests with [Playwright](https://playwright.dev):
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# Build the project first (required for CI)
-pnpm build
-
-# Run all E2E tests
-pnpm test:e2e
-
-# Run tests only on Chromium
-pnpm test:e2e --project=chromium
-
-# Run tests for a specific file
-pnpm test:e2e tests/example.spec.ts
-
-# Run tests in debug mode
-pnpm test:e2e --debug
 ```
 
 ## 🔧 Development Tools
