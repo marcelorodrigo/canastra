@@ -155,7 +155,7 @@ const gridClass = computed(() => {
 })
 
 const getScoreClass = (score: number) => {
-  if (score > 0) return 'text-green-600'
+  if (score > 0) return 'text-primary-600'
   if (score < 0) return 'text-red-600'
   return 'text-gray-500'
 }

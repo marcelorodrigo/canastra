@@ -18,7 +18,7 @@
           :id="menuId"
           class="absolute bottom-16 right-0 w-[50vw] min-w-[200px] max-w-md space-y-3"
         >
-          <ActionButton icon="➕" label="Adicionar Pontos" color="green" @click="openScoreSheet" />
+          <ActionButton icon="➕" label="Adicionar Pontos" color="amber" @click="openScoreSheet" />
           <ActionButton icon="🔄" label="Revanche" color="blue" @click="openRevancheModal" />
           <ActionButton icon="🗑️" label="Apagar Tudo" color="red" @click="openDeleteModal" />
         </div>

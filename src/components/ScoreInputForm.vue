@@ -82,7 +82,7 @@ const canSubmit = computed(() => {
 })
 
 const totalClass = computed(() => {
-  if (totalScore.value > 0) return 'text-green-600'
+  if (totalScore.value > 0) return 'text-primary-600'
   if (totalScore.value < 0) return 'text-red-600'
   return 'text-gray-500'
 })
@@ -93,7 +93,7 @@ const getInputClass = (index: number) => {
   const score = scores.value[index] || 0
 
   if (isFocused) return 'border-primary-500'
-  if (score > 0) return 'border-green-300 bg-green-50'
+  if (score > 0) return 'border-primary-300 bg-primary-50'
   if (score < 0) return 'border-red-300 bg-red-50'
   return 'border-gray-200'
 }

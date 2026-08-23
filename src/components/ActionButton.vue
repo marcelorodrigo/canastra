@@ -15,11 +15,11 @@ import { computed } from 'vue'
 interface Props {
   icon: string
   label: string
-  color?: 'green' | 'red' | 'blue' | 'orange'
+  color?: 'amber' | 'red' | 'blue' | 'orange'
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  color: 'green',
+  color: 'amber',
 })
 
 defineEmits<{
@@ -33,8 +33,8 @@ const buttonClass = computed(() => {
       return `${baseClass} bg-red-400 hover:bg-red-500`
     case 'blue':
       return `${baseClass} bg-blue-400 hover:bg-blue-500`
-    case 'green':
-      return `${baseClass} bg-green-400 hover:bg-green-500`
+    case 'amber':
+      return `${baseClass} bg-primary-500 hover:bg-primary-600`
     case 'orange':
       return `${baseClass} bg-orange-400 hover:bg-orange-500`
     default:

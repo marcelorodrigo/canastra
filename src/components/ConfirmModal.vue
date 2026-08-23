@@ -72,7 +72,7 @@ interface Props {
   message: string
   confirmText?: string
   cancelText?: string
-  confirmColor?: 'red' | 'green' | 'blue'
+  confirmColor?: 'red' | 'amber' | 'blue'
   icon?: string
 }
 
@@ -80,7 +80,7 @@ const props = withDefaults(defineProps<Props>(), {
   show: true,
   confirmText: 'Confirmar',
   cancelText: 'Cancelar',
-  confirmColor: 'green',
+  confirmColor: 'amber',
   icon: '❓',
 })
 
@@ -104,7 +104,7 @@ const iconClass = computed(() => {
     case 'blue':
       return `${baseClass} bg-blue-100 text-blue-600`
     default:
-      return `${baseClass} bg-green-100 text-green-600`
+      return `${baseClass} bg-primary-100 text-primary-600`
   }
 })
 

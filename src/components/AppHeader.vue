@@ -8,7 +8,7 @@
             <img src="@/assets/logo.svg" alt="Canastra" class="h-8 w-8 animate-bounce-subtle" />
             <div
               v-if="hasActiveGame"
-              class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"
+              class="absolute -top-1 -right-1 w-3 h-3 bg-primary-500 rounded-full animate-pulse"
             ></div>
           </div>
           <div>
@@ -44,7 +44,7 @@ const gameStatus = computed(() => {
 })
 
 const getScoreColor = (index: number) => {
-  if (store.isWinner(index)) return 'text-green-600'
+  if (store.isWinner(index)) return 'text-primary-600'
   if (store.isLeading(index)) return 'text-primary-600'
   return 'text-gray-900'
 }

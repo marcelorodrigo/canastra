@@ -70,7 +70,7 @@ describe('ScoreInputForm', () => {
     expect(wrapper.emitted('submit')![0]).toEqual([[-100, 50]])
   })
 
-  it('renders the round total in green for positive and red for negative', async () => {
+  it('renders the round total in primary for positive and red for negative', async () => {
     const wrapper = mount(ScoreInputForm)
     const inputs = wrapper.findAll('input')
     const totalEl = () =>
@@ -80,7 +80,7 @@ describe('ScoreInputForm', () => {
 
     await inputs[0].setValue(100)
     await inputs[1].setValue(50)
-    expect(totalEl().classes()).toContain('text-green-600')
+    expect(totalEl().classes()).toContain('text-primary-600')
     expect(totalEl().text()).toBe('+150')
 
     await inputs[0].setValue(-100)
