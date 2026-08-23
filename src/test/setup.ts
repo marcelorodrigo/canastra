@@ -1,3 +1,5 @@
+import { beforeEach } from 'vitest'
+
 class MemoryStorage {
   private store = new Map<string, string>()
 
@@ -27,6 +29,10 @@ class MemoryStorage {
 }
 
 const storage = new MemoryStorage()
+
+beforeEach(() => {
+  storage.clear()
+})
 
 const applyStorage = (target: object) => {
   try {
