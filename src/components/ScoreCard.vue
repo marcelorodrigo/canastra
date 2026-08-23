@@ -92,9 +92,9 @@ const layoutClass = computed(() => {
 })
 
 const scoreColorClass = computed(() => {
-  if (props.isWinner) return 'text-primary-600'
+  if (props.isWinner) return 'text-primary-700'
   if (props.isInObrigacao) return 'text-orange-600'
-  if (props.isLeading) return 'text-primary-600'
+  if (props.isLeading) return 'text-primary-700'
   return 'text-gray-900'
 })
 

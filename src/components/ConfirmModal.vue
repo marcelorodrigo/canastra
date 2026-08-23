@@ -42,7 +42,7 @@
               <div class="space-y-3">
                 <button
                   @click="$emit('confirm')"
-                  class="w-full py-3 px-4 rounded-xl font-semibold text-white touch-manipulation transition-all duration-200"
+                  class="w-full py-3 px-4 rounded-xl font-semibold touch-manipulation transition-all duration-200"
                   :class="confirmButtonClass"
                 >
                   {{ confirmText }}
@@ -104,7 +104,7 @@ const iconClass = computed(() => {
     case 'blue':
       return `${baseClass} bg-blue-100 text-blue-600`
     default:
-      return `${baseClass} bg-primary-100 text-primary-600`
+      return `${baseClass} bg-primary-100 text-primary-700`
   }
 })
 
@@ -112,11 +112,11 @@ const confirmButtonClass = computed(() => {
   const baseClass = 'hover:shadow-lg transform hover:scale-105'
   switch (props.confirmColor) {
     case 'red':
-      return `${baseClass} bg-red-500 hover:bg-red-600`
+      return `${baseClass} bg-red-500 hover:bg-red-600 text-white`
     case 'blue':
-      return `${baseClass} bg-blue-500 hover:bg-blue-600`
+      return `${baseClass} bg-blue-500 hover:bg-blue-600 text-white`
     default:
-      return `${baseClass} gradient-primary`
+      return `${baseClass} gradient-primary text-primary-900`
   }
 })
 </script>

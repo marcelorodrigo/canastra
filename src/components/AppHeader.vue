@@ -44,8 +44,8 @@ const gameStatus = computed(() => {
 })
 
 const getScoreColor = (index: number) => {
-  if (store.isWinner(index)) return 'text-primary-600'
-  if (store.isLeading(index)) return 'text-primary-600'
+  if (store.isWinner(index)) return 'text-primary-700'
+  if (store.isLeading(index)) return 'text-primary-700'
   return 'text-gray-900'
 }
 </script>

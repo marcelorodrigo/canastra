@@ -36,7 +36,7 @@
       <button
         @click="submitScore"
         :disabled="!canSubmit"
-        class="w-full py-4 px-6 rounded-xl font-semibold text-white touch-manipulation transition-all duration-200"
+        class="w-full py-4 px-6 rounded-xl font-semibold text-primary-900 touch-manipulation transition-all duration-200"
         :class="
           canSubmit
             ? 'gradient-primary hover:shadow-lg transform hover:scale-105'
@@ -82,7 +82,7 @@ const canSubmit = computed(() => {
 })
 
 const totalClass = computed(() => {
-  if (totalScore.value > 0) return 'text-primary-600'
+  if (totalScore.value > 0) return 'text-primary-700'
   if (totalScore.value < 0) return 'text-red-600'
   return 'text-gray-500'
 })

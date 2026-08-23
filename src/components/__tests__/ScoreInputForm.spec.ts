@@ -80,7 +80,7 @@ describe('ScoreInputForm', () => {
 
     await inputs[0].setValue(100)
     await inputs[1].setValue(50)
-    expect(totalEl().classes()).toContain('text-primary-600')
+    expect(totalEl().classes()).toContain('text-primary-700')
     expect(totalEl().text()).toBe('+150')
 
     await inputs[0].setValue(-100)

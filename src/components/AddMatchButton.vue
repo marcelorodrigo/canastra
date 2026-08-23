@@ -30,7 +30,7 @@
         :aria-label="isExpanded ? 'Fechar menu' : 'Abrir menu'"
         :aria-expanded="isExpanded"
         :aria-controls="menuId"
-        class="w-14 h-14 rounded-full gradient-primary shadow-lg flex items-center justify-center text-white text-xl touch-manipulation transform transition-all duration-300 hover:scale-110 active:scale-95"
+        class="w-14 h-14 rounded-full gradient-primary shadow-lg flex items-center justify-center text-primary-900 text-xl touch-manipulation transform transition-all duration-300 hover:scale-110 active:scale-95"
         :class="{ 'rotate-45': isExpanded }"
       >
         {{ isExpanded ? '✕' : '+' }}

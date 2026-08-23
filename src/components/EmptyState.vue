@@ -19,7 +19,7 @@
     </p>
 
     <!-- Call to action -->
-    <div class="flex items-center space-x-2 text-primary-600">
+    <div class="flex items-center space-x-2 text-primary-700">
       <span class="text-sm font-medium">Toque no botão</span>
       <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
         <span class="text-lg">+</span>

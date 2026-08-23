@@ -148,7 +148,7 @@
         <button
           @click="nextStep"
           :disabled="!canProceed"
-          class="flex-1 py-4 px-6 rounded-xl font-semibold text-white touch-manipulation transition-all duration-200"
+          class="flex-1 py-4 px-6 rounded-xl font-semibold text-primary-900 touch-manipulation transition-all duration-200"
           :class="
             canProceed
               ? 'gradient-primary hover:shadow-lg transform hover:scale-105'
