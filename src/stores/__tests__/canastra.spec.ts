@@ -1,5 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
+import { nextTick, createApp } from 'vue'
 import { setActivePinia, createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import {
   useCanastraStore,
   InvalidGameConfigError,
@@ -217,6 +219,185 @@ describe('canastra store', () => {
 
       expect(store.progressFor(0)).toBe(0)
       expect(store.progressFor(1)).toBe(100)
+    })
+  })
+
+  describe('startGame edge cases', () => {
+    it('supports a three-team game', () => {
+      const store = useCanastraStore()
+      store.startGame({ teams: 3, names: ['A', 'B', 'C'], winningPoints: 3000, obrigacaoPoints: 1500 })
+      expect(store.teams).toBe(3)
+      expect(store.names).toEqual(['A', 'B', 'C'])
+    })
+
+    it('throws for a non-integer team count', () => {
+      const store = useCanastraStore()
+      expect(() =>
+        store.startGame({ ...validConfig, teams: 2.5, names: ['A', 'B'] }),
+      ).toThrow(InvalidGameConfigError)
+    })
+
+    it('throws when a name is not a non-empty string', () => {
+      const store = useCanastraStore()
+      expect(() =>
+        store.startGame({ ...validConfig, names: ['A', 5 as unknown as string] }),
+      ).toThrow(InvalidGameConfigError)
+    })
+
+    it('throws when winningPoints is NaN or Infinity', () => {
+      const store = useCanastraStore()
+      expect(() =>
+        store.startGame({ ...validConfig, winningPoints: NaN }),
+      ).toThrow(InvalidGameConfigError)
+      expect(() =>
+        store.startGame({ ...validConfig, winningPoints: Infinity, obrigacaoPoints: 10 }),
+      ).toThrow(InvalidGameConfigError)
+    })
+
+    it('throws when obrigacaoPoints is zero or negative', () => {
+      const store = useCanastraStore()
+      expect(() =>
+        store.startGame({ ...validConfig, obrigacaoPoints: 0 }),
+      ).toThrow(InvalidGameConfigError)
+      expect(() =>
+        store.startGame({ ...validConfig, obrigacaoPoints: -10 }),
+      ).toThrow(InvalidGameConfigError)
+    })
+  })
+
+  describe('addRound edge cases', () => {
+    beforeEach(() => {
+      const store = useCanastraStore()
+      store.startGame({ teams: 3, names: ['A', 'B', 'C'], winningPoints: 3000, obrigacaoPoints: 1500 })
+    })
+
+    it('accumulates totals across multiple rounds', () => {
+      const store = useCanastraStore()
+      store.addRound([100, 200, -50])
+      store.addRound([50, 0, 50])
+      expect(store.totals).toEqual([150, 200, 0])
+    })
+
+    it('accepts fractional and negative scores', () => {
+      const store = useCanastraStore()
+      store.addRound([10.5, -25.25, 0])
+      expect(store.totals).toEqual([10.5, -25.25, 0])
+    })
+
+    it('removes a round in a three-team game', () => {
+      const store = useCanastraStore()
+      store.addRound([10, 20, 30])
+      store.addRound([1, 2, 3])
+      store.removeRound(0)
+      expect(store.rounds).toEqual([[1, 2, 3]])
+    })
+  })
+
+  describe('revanche and reset details', () => {
+    it('revanche preserves team count, names and thresholds', () => {
+      const store = useCanastraStore()
+      store.startGame({ teams: 3, names: ['A', 'B', 'C'], winningPoints: 2500, obrigacaoPoints: 1000 })
+      store.addRound([10, 20, 30])
+      store.revanche()
+      expect(store.rounds).toEqual([])
+      expect(store.teams).toBe(3)
+      expect(store.names).toEqual(['A', 'B', 'C'])
+      expect(store.winningPoints).toBe(2500)
+      expect(store.obrigacaoPoints).toBe(1000)
+    })
+
+    it('reset clears names and rounds back to defaults', () => {
+      const store = useCanastraStore()
+      store.startGame({ teams: 3, names: ['A', 'B', 'C'], winningPoints: 2500, obrigacaoPoints: 1000 })
+      store.addRound([10, 20, 30])
+      store.reset()
+      expect(store.teams).toBe(0)
+      expect(store.names).toEqual(['', ''])
+      expect(store.rounds).toEqual([])
+      expect(store.winningPoints).toBe(3000)
+      expect(store.obrigacaoPoints).toBe(1500)
+    })
+  })
+
+  describe('threshold boundary getters', () => {
+    it('marks a team at exactly the winning threshold as winner', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([3000, 1000])
+      expect(store.isWinner(0)).toBe(true)
+      expect(store.winnerIndices).toEqual([0])
+    })
+
+    it('marks a team at exactly the obrigação threshold as in obrigação', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([1500, 100])
+      expect(store.isInObrigacao(0)).toBe(true)
+    })
+
+    it('reports obrigação for negative totals (below threshold)', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([-200, -100])
+      expect(store.isInObrigacao(0)).toBe(false)
+      expect(store.isLeading(0)).toBe(false)
+    })
+
+    it('returns false for out-of-range getter indices without throwing', () => {
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([100, 200])
+      expect(store.isWinner(5)).toBe(false)
+      expect(store.isLeading(5)).toBe(false)
+      expect(store.isInObrigacao(5)).toBe(false)
+      expect(() => store.progressFor(5)).not.toThrow()
+    })
+  })
+
+  describe('persistence', () => {
+    beforeEach(() => {
+      localStorage.clear()
+    })
+
+    it('writes the store state to localStorage', async () => {
+      const pinia = createPinia()
+      pinia.use(piniaPluginPersistedstate)
+      createApp(() => {}).use(pinia)
+      setActivePinia(pinia)
+      const store = useCanastraStore()
+      store.startGame({ ...validConfig })
+      store.addRound([10, 20])
+      await nextTick()
+
+      const raw = localStorage.getItem('scores')
+      expect(raw).toBeTruthy()
+      const parsed = JSON.parse(raw as string)
+      expect(parsed.rounds).toEqual([[10, 20]])
+      expect(parsed.teams).toBe(2)
+    })
+
+    it('hydrates state from localStorage on a fresh store', async () => {
+      localStorage.setItem(
+        'scores',
+        JSON.stringify({
+          teams: 2,
+          names: ['A', 'B'],
+          rounds: [[100, 200]],
+          winningPoints: 3000,
+          obrigacaoPoints: 1500,
+        }),
+      )
+      const pinia = createPinia()
+      pinia.use(piniaPluginPersistedstate)
+      createApp(() => {}).use(pinia)
+      setActivePinia(pinia)
+      const store = useCanastraStore()
+      await nextTick()
+
+      expect(store.teams).toBe(2)
+      expect(store.names).toEqual(['A', 'B'])
+      expect(store.rounds).toEqual([[100, 200]])
+      expect(store.totals).toEqual([100, 200])
     })
   })
 })

@@ -32,6 +32,10 @@ describe('gameRules', () => {
       expect(computeLeaderIndices([500, 300, 500])).toEqual([0, 2])
     })
 
+    it('returns the index of the unique leader with negative totals', () => {
+      expect(computeLeaderIndices([-200, -50, -300])).toEqual([1])
+    })
+
     it('returns an empty list for an empty totals array', () => {
       expect(computeLeaderIndices([])).toEqual([])
     })
@@ -40,6 +44,10 @@ describe('gameRules', () => {
   describe('computeWinnerIndices', () => {
     it('returns the unique leader above the threshold', () => {
       expect(computeWinnerIndices([1000, 3200], 3000)).toEqual([1])
+    })
+
+    it('returns the unique leader exactly at the winning threshold', () => {
+      expect(computeWinnerIndices([3000, 1000], 3000)).toEqual([0])
     })
 
     it('returns no winner when nobody reached the threshold', () => {
