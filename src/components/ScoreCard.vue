@@ -3,7 +3,7 @@
     class="flex gap-4 bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 touch-manipulation"
     :class="[
       layoutClass,
-      { 'ring-2 ring-green-500 bg-green-50': isWinner },
+      { 'ring-2 ring-primary-500 bg-primary-50': isWinner },
       { 'ring-2 ring-orange-500 bg-orange-50': isInObrigacao && !isWinner },
       { 'ring-1 ring-primary-300': isLeading && !isWinner && !isInObrigacao },
     ]"
@@ -92,14 +92,14 @@ const layoutClass = computed(() => {
 })
 
 const scoreColorClass = computed(() => {
-  if (props.isWinner) return 'text-green-600'
+  if (props.isWinner) return 'text-primary-700'
   if (props.isInObrigacao) return 'text-orange-600'
-  if (props.isLeading) return 'text-primary-600'
+  if (props.isLeading) return 'text-primary-700'
   return 'text-gray-900'
 })
 
 const progressBarClass = computed(() => {
-  if (props.isWinner) return 'bg-green-500'
+  if (props.isWinner) return 'bg-primary-500'
   if (props.isInObrigacao) return 'bg-orange-500'
   if (props.progressPercentage >= 80) return 'bg-accent-500'
   if (props.progressPercentage >= 50) return 'bg-primary-400'

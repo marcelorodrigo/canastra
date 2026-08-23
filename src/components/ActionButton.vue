@@ -1,7 +1,7 @@
 <template>
   <button
     @click="$emit('click')"
-    class="w-full min-w-[200px] h-14 px-4 rounded-xl shadow-lg flex items-center justify-start space-x-3 text-white touch-manipulation transform transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl"
+    class="w-full min-w-[200px] h-14 px-4 rounded-xl shadow-lg flex items-center justify-start space-x-3 touch-manipulation transform transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl"
     :class="buttonClass"
   >
     <span class="text-2xl">{{ icon }}</span>
@@ -15,11 +15,11 @@ import { computed } from 'vue'
 interface Props {
   icon: string
   label: string
-  color?: 'green' | 'red' | 'blue' | 'orange'
+  color?: 'amber' | 'red' | 'blue' | 'orange'
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  color: 'green',
+  color: 'amber',
 })
 
 defineEmits<{
@@ -30,15 +30,15 @@ const buttonClass = computed(() => {
   const baseClass = 'hover:shadow-xl'
   switch (props.color) {
     case 'red':
-      return `${baseClass} bg-red-400 hover:bg-red-500`
+      return `${baseClass} bg-red-400 hover:bg-red-500 text-white`
     case 'blue':
-      return `${baseClass} bg-blue-400 hover:bg-blue-500`
-    case 'green':
-      return `${baseClass} bg-green-400 hover:bg-green-500`
+      return `${baseClass} bg-blue-400 hover:bg-blue-500 text-white`
+    case 'amber':
+      return `${baseClass} bg-primary-500 hover:bg-primary-600 text-primary-900`
     case 'orange':
-      return `${baseClass} bg-orange-400 hover:bg-orange-500`
+      return `${baseClass} bg-orange-400 hover:bg-orange-500 text-white`
     default:
-      return `${baseClass} gradient-primary`
+      return `${baseClass} gradient-primary text-primary-900`
   }
 })
 </script>
